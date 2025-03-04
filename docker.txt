@@ -130,3 +130,15 @@ curl "http://VM'sIP:8080
 
 # docker run -d --name "webserver1" -p 8080:80 nginx:latest
 
+olume Mapping:
+```````````````
+container httpd: /usr/local/apache2/htdocs
+Host OS : /web1
+
+# mkdir /web1
+# cat > /web1/index.html
+<html><body><h1>ULALA</h1></body></html>
+
+# docker run -d --name "server1" -v 
+/web1:/usr/local/apache2/htdocs -p 80:80 httpd:latest 
+
