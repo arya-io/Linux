@@ -1,0 +1,31 @@
+Assignment 2
+`````````````
+Q. Write a menu based script which displays the following options :
+
+1. Make a file. 
+2. Display contents
+3. Copy the file
+4. Rename the file
+5. Delete the file
+6. Exit
+Enter your option:
+
+If the user selects option 1, accept a file name from the user. If the file exists, 
+then display an error message pass the control to the menu. If the file does not exist, 
+then allow the user to enter some data. Pressing would save the contents and display the menu.
+
+If the user selects option 2, then accept a file name fromthe user. If the file exists, 
+then display the contents of the file. If the file does not exist, then display suitable error message. 
+After this process, display the menu to accept another option. 
+
+Selecting Option 3 allows the user to accept 
+the source file and target file. If the source file exists and is readable, then accept the target file name. 
+If the sourcefile does not exist, then display suitable error message. If the target file does not exist, 
+then copy the contents of the source file to the target file. If the target file exists, then display suitable 
+message and go back to the menu. 
+
+Option 4 is similar to option 3 but rename the file instead of copying. 
+
+Selecting option 5 allows the user to enter a file name. If the file exists, then check to see if it is writable.
+If so, then delete the file with confirmation from the user. If the file does not exist, then display suitable error message. 
+ 
