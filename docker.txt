@@ -1,0 +1,94 @@
+Image :
+```````
+docker hub [public/private repo server]
+https://hub.docker.com/
+
+Docker Commands:
+----------------
+1) run : Start a container
+`````````````````````````` [image: httpd, nginx ]
+# docker run image
+OR
+# docker run image:latest
+# docker run image:1.1.0
+
+# docker run -d image:1.1.0
+[-d: detach]
+
+
+2) ps : list of running containers 
+
+# docker ps 
+# docker ps -a [ running & stopped containers]
+# docker ps -q [ Quite : list the ID of container ]
+# docker ps -aq
+
+3) stop : Stop a container
+
+# docker stop NAME
+		or
+	     CONTAINER ID
+
+# docker stop $(docker ps -q)
+
+# docker start CONTAINER_ID
+# docker stop CONTAINER_ID
+# docker restart CONTAINER_ID
+
+4) rm : Remove a container
+
+# docker rm name/container ID [ Remove a stopped container ]
+# docker rm -f name/container ID
+eg:
+```
+
+# docker rm -f $(docker ps -aq)
+
+
+
+
+5) images : list images
+
+# docker images
+# docker images -q
+
+PULL:
+`````
+# docker pull image
+# docker pull image:tag
+
+
+
+
+6) rmi : Remove image [ -f : forcefully ]
+
+# docker rmi <image_id>
+# docker rmi -f <image_id>
+eg:
+
+# docker rmi $(docker images -q)
+# docker rmi -f $(docker images -q)
+
+
+
+
+
+
+
+
+7) pull : Only download image
+
+# docker pull docker/whalesays
+
+8) exec - execute command
+
+# docker exec <name> cat /etc/passwd
+# docker exec -it <name/id> bash
+
+9) run : attach & detach
+
+# docker run image [Attach with terminal]
+
+# docker run -d image [ Detach ]
+
+# docker attach c6ecf [Attach again]
