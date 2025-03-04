@@ -92,3 +92,41 @@ eg:
 # docker run -d image [ Detach ]
 
 # docker attach c6ecf [Attach again]
+
+PART 2:
+
+-----------------------------------------------
+INSPECT:
+`````````
+IP:
+````
+# docker inspect -f '{{json .NetworkSettings.IPAddress}}' container_ID/Name
+
+GW:
+```
+# # docker inspect -f '{{json .NetworkSettings.Gateway}}' container_ID/Name
+
+
+
+
+
+Port mapping:
+-------------
+
+* Lets run a single container with a simple web application (httpd:80) on port 8080 on host machine.
+
+# docker run -d --name "web1" -p 8080:80 httpd
+
+
+
+
+Image: nginx
+Port: 80/tcp
+Map: 8080<->80/tcp
+Name: webserver1
+
+curl "http://VM'sIP:8080
+
+
+# docker run -d --name "webserver1" -p 8080:80 nginx:latest
+
