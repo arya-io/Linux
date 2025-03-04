@@ -54,6 +54,8 @@ b) File/Dir to Dir
 
 man cmd	[ Manual of command 
 	e.g: # man mkdir
+
+
 REMOVE:
 -------
 a) A file:
@@ -98,7 +100,8 @@ Create :
 Remove:
 
 # unalias money
-==================
+
+
 Variables:
 
 - User defined var
@@ -170,7 +173,8 @@ M : MB
 # cat filename
 # wc -l filename
 
-# cat data | wc -l
+# cat data | wc –l
+
 grep : 
 ```````
 To search string/pattern/regex 
@@ -308,3 +312,722 @@ To go to previous occurrence press N
 :w! save forcefully
 :q! quit forcefully
 :wq! Save and quit forcefully
+
+
+
+Basic Permissions: [ File based ]
+------------------
+
+1) Symbolic Method
+===================
+read	: r
+write	: w
+execute	: x
+------------
+user owner	: u
+group owner	: g
+Others		: o
+All		: a
+------------
+Assign		: +
+Remove		: -
+Overwrite	: =
+------------
+
+
+Permission Area:
+----------------
+--- : user owner
+--- : group owner
+--- : Others
+
+# ls -l
+-rw-r--r-- 1 root root   43 Sep 23 01:56 file1
+
+
+
+
+
+Default permissions for file: 
+-----------------------------
+read & write	: u
+read		: g
+read		: o
+
+Default permissions for dir: 
+----------------------------
+read, write & execute	: u
+read & execute		: g
+read & execute		: o
+
+Change permissions in Symbolic method:
+---------------------------------------
+# chmod u+rx file/dir
+# chmod u-r,g+rw,o-rwx file/dir
+# chmod u=rw file/dir
+# chmod ugo=r file/dir
+# chmod a=r file/dir
+# chmod +x file/dir
+
+2) Numeric Method
+-----------------
+
+read	: 4
+write	: 2
+execute	: 1
+Full	: 7
+No	: 0
+
+---	000	0
+r--	100	4	
+-w-	010	2
+--x	001	1
+rwx	111	7
+
+# chmod 711 file/dir
+# chmod 111 dir -R
+[-R : recursively]
+
+
+Questions
+
+Q. Create a collaborative directory /common/adm with the following characteristics:
+
+-Group ownership of /common/adm is admin
+
+-The directory should be readable, writable, and accessible to members of admin, but not to any other user. (It is understood that root has access to all ﬁles and directories on the system.)
+
+
+
+Q. Copy the ﬁle /etc/fstab to /var/tmp. Conﬁgure the permissions of /var/tmp/fstab so that: 
+
+-The ﬁle /var/tmp/fstab is owned by the root user.
+
+-The ﬁle /var/tmp/fstab belongs to the group root.
+
+-The ﬁle /var/tmp/fstab should not be executable by anyone.
+
+-The user harry is able to read and write /var/tmp/fstab.
+
+-The user natasha can neither write nor read /var/tmp/fstab.
+
+-all other users (current or future) have the ability to read /var/tmp/fstab 
+
+Q. Create a Command Shell Environment : 
+-Create a command qstat.
+
+-It should able to execute the following command 
+( ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm )
+
+
+
+Process Management:
+
+```````````````````
+Process:
+````````
+- Any running program is a process
+- Multiple instances of the same program are processes.
+- Shell is also a process
+
+
+Process ID (PID)
+````````````````
+- Each linux process is identified by unique id PID 
+- Every process has a Parent Process ID (PPID)
+	+ Except "init"
+
+Create a Process:
+`````````````````
+Terminal#1
+```````````
+# sleep 100
+
+Terminal#2
+```````````
+# ps -la		[ Show the processes with PID & PPID ]
+
+Managing Processes:
+````````````````````
+- Linux kernel tracks what each process is doing
+- Process is assigned a priority
+- Address space assigned to the process
+- Files is the process allowed to access
+- Is the process a ?:-
+	+ Parent
+	+ Child
+	+ Zombie
+
+=> Sometimes the parent dies first
+``````````````````````````````````
+- If the parent just exits or dies, the child process is left running
+- The child's PPID is no longer valid due to parent is gone.
+- Linux calls these children processes "Zombies"
+- In Linux a zombie is just a process in which the children are adopted by the "init" process
+- The init process will eventually cleanup the zombie childrens
+
+PPID[kill]
+	\___________PID[kill]
+
+PPID[die]
+	\___________PID[zombie]
+
+process manager: 
+````````````````
+ps, top, htop
+``````````````
+# top
+
+press 'q' to exit
+
+
+# sleep 10 &
+
+# ps 		[ PID - Process ID]
+# ps -l 	[ Show the PPID - Parent PID ]
+# ps -e		[ All the processes ]
+
+# ps -la
+
+Kill:
+-----
+# kill PID
+OR
+# kill -9 PID
+
+-9 : Forcefully
+
+# pkill sleep
+
+# killall sleep
+--------------------
+
+
+# sleep 10000 &
+# sleep 20000 &
+
+
+
+
+Check backgroup process:
+
+# jobs
+[1]-  Running                 sleep 10000 &
+[2]+  Running                 sleep 20000 &
+
+-  : Second last added in jobs
++  : last added in jobs
+
+# jobs -l	[ with PID ]
+[1]-   971 Running                 sleep 10000 &
+[2]+   972 Running                 sleep 20000 &
+
+
+# fg %2
+
+ctrl+z [stop]
+
+# bg %2 [ To start in BG ]
++++++++++++++++++++++++++++++++++++
+
+1. Create the following users, groups, and group memberships:
+
+-A group named admin
+# groupadd admin
+
+-A user harry who belongs to admin as a secondary group
+# useradd -G admin harry
+
+-A user natasha who also belongs to admin as a secondary group
+# useradd -G admin natasha
+
+-A user sarah who does not have access to an interactive shell on the system, and who is not a member of admin
+# useradd -s /bin/nologin sarah
+
+-harry, natasha, and sarah should all have the password of "redhat@123?"
+# passwd user
+
+
+
+Q. You need to change the permissions of a file named schedule.txt such that the file owner can edit the file, users who are members of the group that owns the file can edit it, and users who are not owners and don't belong to the owning group can view it but not modify it. Which command will do this?
+
+224
+
+
+
+Q. Your Linux system's umask variable is currently set to a value of 077. A user named 'jason' (who is a member of the users group) creates a dir named /tasks. What can users who are members of the users group do with this file?
+
+
+
+777 - 077 = 700
+
+
+
+Q. Create a collaborative directory /common/adm with the following characteristics:
+
+-Group ownership of /common/adm is admin
+
+-The directory should be readable, writable, and accessible to members of admin, but not to any other user. (It is understood that root has access to all ﬁles and directories on the system.)
+
+
+
+Q. Create a collaborative directory /common/adm with the following characteristics:
+
+-Group ownership of /common/adm is admin
+
+-The directory should be readable, writable, and accessible to members of admin, but not to any other user. (It is understood that root has access to all ﬁles and directories on the system.)
+
+# mkdir -p /common/adm
+# chgrp admin /common/adm
+# chmod 770 /common/adm
+
+
+Q. Copy the ﬁle /etc/fstab to /var/tmp. Conﬁgure the permissions of /var/tmp/fstab so that: 
+
+-The ﬁle /var/tmp/fstab is owned by the root user.
+-The ﬁle /var/tmp/fstab belongs to the group root.
+-The ﬁle /var/tmp/fstab should not be executable by anyone.
+-The user harry is able to read and write /var/tmp/fstab.
+-The user natasha can neither write nor read /var/tmp/fstab.
+-all other users (current or future) have the ability to read /var/tmp/fstab 
+
+# cp -rfv /etc/fstab /var/tmp/
+# chown root /var/tmp/fstab
+# chgrp root /var/tmp/fstab
+# setfacl -m u:harry:6 /var/tmp/fstab
+# setfacl -m u:natasha:0 /var/tmp/fstab
+# chmod o=r /var/tmp/fstab
+
+
+Q. Create a Command Shell Environment : 
+-Create a command qstat.
+
+-It should able to execute the following command 
+( ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm )
+
+# alias qstat='ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm'
+# qstat
+
+
+Shell Scripting:
+----------------To run multiple objects[binary/commands] using a single object[file].
+
+.sh || .bash 
+
+# vim runme.sh
+
+#!/bin/bash	 [env declaration]SHEBANG
+cmd1
+cmd2
+cmd3
+
+:wq [Save & Quit]
+
+# chmod u+x runme.sh
+# ./runme.sh
+OR
+# bash runme.sh
+
+
+
+==> Debug:
+----------
+
+# bash -x runme.sh
+
+
+
+
+
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Variable:
+---------
+#!/bin/bash
+target="example.com"
+echo "My target for today is: $target"
+echo "My target for today is: ${target}"
+
+----------
+#!/bin/bash
+read -p "Enter the target: " target
+echo "My target for today is: ${target}"
+echo "My target for today is: ${target:-DEFAULT}"
+-----------
+
+
+
+
+
+
+
+#!/bin/bash
+target=$(whoami)
+echo "My user for today is: $target"
+-----------
+#!/bin/bash
+target=`whoami`
+echo "My user for today is: $target"
+-----------
+
+
+
+
+
+
+Arithmetic
+~~~~~~~~~~~
+x=10
+y=2
+echo $(($x + $y))
+--------
+read -p "Enter first: " x
+read -p "Enter second: " y
+echo $(($x + $y))
+	--------
+#!/bin/bash
+expr 2 + 2
+expr 2 - 2
+expr 2 / 2
+expr 2 \* 2
+===============================
+Conditions:
+```````````
+1) if...then...fi
+2) if...then...else...fi
+3) if...then...elif...then...fi
+4) if...then...elif...then...else...fi
+
+
+1) if...then...fi
+````````````````````
+#!/bin/bash
+read -p "Enter: " a
+
+if [[ $a == "0" ]];then
+	echo "Ch mayla"
+fi
+
+
+
+
+2) if...then...else...fi
+`````````````````````````
+#!/bin/bash
+read -p "Enter: " a
+
+if [[ $a == "0" ]];then
+	echo "Ch mayla"
+else
+	echo "Tumse na ho payega"
+fi
+
+
+
+3) if...then...elif...then...fi
+`````````````````````````````````
+#!/bin/bash
+read -p "Enter: " a
+
+if [[ $a == "0" ]];then
+	echo "WoW"
+elif [[ $a == "1" ]];then
+	echo "Kidding"
+fi
+
+
+
+
+4) if...then...elif...then...else...fi
+```````````````````````````````````````
+#!/bin/bash
+read -p "Enter: " a
+
+if [[ $a == "0" ]];then
+	echo "WoW"
+elif [[ $a == "1" ]];then
+	echo "Kidding"
+else 
+	echo "Don't take it lightly"
+fi
+
+1) Relational Operator:
+```````````````````````
+String comparisons: ==, !=, <, <=, >, >=, =~, !~
+Numeric Comparisons: -eq, -ne, -lt, -le, -gt, -ge
+
+
+
+
+
+
+
+
+
+
+[[ NUM == NUM ]]	Equal
+[[ NUM != NUM ]]	Not Equal
+[[ STRING -eq STRING ]]		Equal
+[[ STRING -ne STRING ]]		Not equal
+[[ STRING -lt STRING ]]		Less than
+[[ STRING -le STRING ]]		Less than or equal
+[[ STRING -gt STRING ]]		Greater than
+[[ STRING -ge STRING ]]		Greater than or equal
+[[ STRING =~ STRING ]]	Match RegEx
+[[ STRING !~ STRING ]]	Not-Match RegEx
+
+File Ops:
+``````````
+[[ -e FILE ]]	Exists
+[[ -r FILE ]]	Readable
+[[ -w FILE ]]	Writable
+[[ -x FILE ]]	Executable
+[[ -f FILE ]]	File
+[[ -d FILE ]]	Directory
+[[ -z STRING ]]	Empty string/var
+[[ -n STRING ]]	Not empty string/var
+[[ -s FILE ]] : File size not empty
+[[ ! -s FILE ]] : File size empty
+
+
+
+
+2) Logical Operators:
+``````````````````````
+||, &&, !
+
+[[ $a == "0" ]] && [[ $b == "1" ]]
+
+[[ $a == "0" ]] || [[ $b == "1" ]]
+
+[[ ! -z $VAR ]] : Not Empty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------
+
+1) if...then...fi
+2) if...then...else...fi
+3) if...then...elif...then...fi
+
+#!/bin/bash
+read -p "Enter value: " a
+if [ $a == "1" ]
+then
+echo "It done"
+fi
+
+2) if...then...else...fi
+
+#!/bin/bash
+read -p "Enter value: " a
+if [ $a == "1" ]
+then
+echo "It done"
+else
+echo "WTF"
+fi
+
+
+3) if...then...elif...then...fi
+
+#!/bin/bash
+read -p "Enter value: " a
+if [ $a == "1" ]
+then
+echo "It done"
+elif [ $a == "2" ]
+then 
+echo "Its FUN"
+fi
+
+4) if...then...elif...then...else...fi
+
+#!/bin/bash
+read -p "Enter value: " a
+if [ $a == "1" ]
+then
+echo "It done"
+elif [ $a == "2" ]
+then
+echo "Its FUN"
+else
+echo "WTF"
+fi
+
+
+
+
+
+
+
+
+
+
+while loop:
+-----------
+
+
+while true
+do
+echo "LOL"
+done
+
+# while true;do echo "LOL";done
+
+redirect/stdin 
+--------
+# cat > file
+Dheeraj
+Tabish
+Amruta
+Mayur
+
+# while read -r name; do echo "Name: $name";done < file
+
+# cat file | while read -r name; do echo "Name: $name";done
+----------------------------
+
+TOOL:
+-----
+
+example.com		DOMAIN
+admin.example.com	SUB DOMAIN
+
+DNS
+
+name - IP
+IP - name
+------
+
+
+Target : yahoo.com
+
+
+# vim subtool.sh
+#!/bin/bash
+target=$1
+file=$2
+while read -r sub; do
+        if host "$sub.$target" &> /dev/null; then
+                echo "$sub.$target"
+        fi
+done < $file
+
+
+
+
+
+
+
+
+
+nested if:
+----------
+
+#!/bin/bash
+file=$1
+
+if [ -f "$file" ]; then
+	if [ -w "$file" ]; then
+		echo "Enter text:"
+		cat >> $file
+	else
+		echo "Not writable"
+	fi
+else
+	echo "$file not found"
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+Functions:
+----------
+
+
+#!/bin/bash
+target=$1
+file=$2
+
+brute(){
+	while read -r sub; do
+        if host "$sub.$target" &> /dev/null; then
+                echo "$sub.$target"
+        fi
+	done < $file
+}
+
+if [ -f "$file" ]; then
+	brute
+else
+	echo "$file not found"
+fi
+----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+CASE in BASH
+------------
+
+#!/bin/bash
+f1(){
+        echo "F1 is cool"
+}
+f2(){
+        echo "F2 is awesome"
+}
+menu(){
+        echo -e "1. Func 1\n2. Fun 2\n3. exit"
+        read -p "Input> " a
+}
+menu
+case $a in
+        "1")
+                f1
+                ;;
+        "2")
+                f2
+                ;;
+        "3")
+                exit
+                ;;
+        *)
+                echo "WTF"
+                ;;
+esac
