@@ -1,0 +1,55 @@
+Free certs:
+``````````````Profile
+https://overthewire.org/wargames/bandit/
+
+Basic Linux:[cert]
+------------------
+https://training.linuxfoundation.org/training/introduction-to-linux/
+
+https://kodekloud.com/courses/the-linux-basics-course/
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Basic Shell Scripting:
+``````````````````````
+https://www.shellscript.sh/
+https://guide.bash.academy/
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Required for Cyber Sec :
+````````````````````````
+https://tryhackme.com/room/dnsindetail
+
+https://tryhackme.com/room/httpindetail
+
+https://tryhackme.com/room/walkinganapplication
+
+https://tryhackme.com/room/introwebapplicationsecurity
+
+https://tryhackme.com/room/introtooffensivesecurity
+
+https://tryhackme.com/room/contentdiscovery
+
+https://tryhackme.com/room/burpsuitebasics
+
+https://tryhackme.com/room/owasptop102021
+
+https://tryhackme.com/room/picklerick
+------------------------------------------------
+https://academy.hackthebox.com/
+
+https://www.hackthebox.com/
+https://application.security
+-----------------------
+https://www.bugcrowd.com/resources/levelup/introduction-to-bugcrowd-university/
+
+CTF:
+```` Basic
+
+https://www.hacker101.com/
+
+
+CTF platform:
+```````````````Job
+https://www.synack.com/red-team/
