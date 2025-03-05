@@ -1,0 +1,89 @@
+VPC
+
+- Search for VPC.
+- Create VPC first.
+- Provide the VPC name: myvpc
+- Provide the IPV4 CIDR: 10.0.0.0/16
+- Click on Create VPC.
+
+`````````````````````````````````````````````
+Now we are going to create Internet Gateway.
+
+- Go to Internet gateways.
+- Create Internet Gateway.
+- Provide the name of Internet Gateway and create it: my-gw
+- Right click on my-gw
+- Select Attach to VPC.
+- Select your VPC from the dropdown and select attach.
+
+- Create public and private subnet.
+- Go to Subnets.
+- Create Subnets.
+- Select VPC from the dropdown and select attach.
+- Subnet name: my_prt_subnet
+- IPV4 subnet CIDR block:
+10.0.1.0/24
+
+Provide the subnet name: my-subnet
+10.0.2.0./24
+- Create subnet.
+
+Go to the Route tables.
+Create a new table.
+Provide Route table name: 
+Select VPC from dropdown.
+Click on Create Route Table.
+
+Go Back to Route Table again and refresh.
+Select Route Table.
+`Public Subnet to Router`
+- Subnet associations.
+Explicit subnet associations(0)
+Edit subnet associations (right)
+Select subnet and save associations.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Route Table to Gateway Connection.
+
+Click Routes.
+Click on Edit Routes.
+Add route.
+0.0.0.0/0 (Wild Card IP address).
+Internet Gateway. (Service name)
+Select your Internet Gateway.
+Save changes.
+
+`````````````````````````````````````
+Now we are going to create two instances - EC1 & EC2
+
+Search for ec2.
+Open EC2 Dashboard.
+Launch instance.
+Provide name: my_pub_ec2
+Select Operating System
+Select SSH key-pair.
+Network Settings edit.
+Choose your vpc.
+Pick the public subnet.
+Enable Auto-assign.
+Click Launch Instance.
+
+For Private (Second instance):
+Just Disable Auto-assign.
+Click Launch Instance.
+
+``````````````````````````````````
+
+Terminate earlier two instances.
+Then go to VPC dashboard through search bar at the top.
+Then go to Internet Gateway.
+Select your Internet Gateway.
+Right Click and Detach from VPC.
+Select your Internet Gateway.
+Right Click and Detach.
+Again right click and Delete.
+Go to VPC.
+Select and Right Click and Delete.
+
+
