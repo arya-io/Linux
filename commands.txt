@@ -7,19 +7,31 @@ PATH:
 + Absolute [ /home/natasha/Desktop ] 
 + Relative [ Desktop ]
 
-pwd	[print working dir]
-cd 	[ Change Dir ]
+pwd
+- print working directory
 
-	# cd path
-	# cd .. [eg: cd ../../]
+cd
+- Change Directory
+
+cd path
+cd .. [eg: cd ../../]
 
 ls	[ List of dir contents ]
 	# pwd
 	/
 	# ls /root/Desktop
-mkdir dirname 	[Make Dir]
-touch filename 	[To create a blank file]
-cat > filename	[To create a new file with text]
+
+whoami
+- To show current logged in user name
+
+mkdir dirname
+- Make new directory
+
+touch filename
+- To create a blank file (A file without any content)
+
+cat > filename
+- To create a new file with text
 	e.g: # cat > marvels
 		TEXT
 		[ctrl+d]-> save & exit
@@ -27,14 +39,21 @@ cat > filename	[To create a new file with text]
 > [Standard output to the program]
 < [Standard input to the program]
 
-cat filename	[ To show the text of file]
-cat >> file	[ Append the text in existing file.]
+cat filename
+- To show the text of file
+
+cat >> file
+- Append the text in existing file.
 		e.g: # cat >> marvels
 		TEXT2
 		[ctrl+d]-> exit
 
 date
-clear [To clear the screen/terminal] OR ctrl+l
+- Display current date and time
+
+clear
+- To clear the screen/terminal OR ctrl+l
+
 COPY:
 -----
 a) File to File:
@@ -50,9 +69,9 @@ b) File/Dir to Dir
 	# cp -rfv srcFile/Dir dstDir 
 [ -r : Recursive ]*
 -f : forcefully
--v : verbose
+-v : verbose (to show process)
 
-man cmd	[ Manual of command 
+man cmd	[ Manual of command ]
 	e.g: # man mkdir
 
 
@@ -69,25 +88,32 @@ b) A dir:
 MOVE: [cut n paste ]
 -----
 # mv src dst
+Move a file from source to destination
 
 # mv oldname newname
+This command is used to rename 'oldname' file.
 
 # mkdir .dirname [Hidden Content]
 # ls -a [ Show all content with hidden data]
 
-whoami 
+whoami
+Display current User name 
 
 echo "msg" : Print the msg on terminal
 
 # tty
+- To display terminal name
 /dev/pts/0
 
 echo "LOL" > /dev/pts/1
+- To display message from one terminal to another terminal
+
 echo "Darlings" > kiki
-echo "Darlingssssss" >> kiki
+- To store content directly in a file with echo command
 
 
-alias: [ command redirection ]
+alias:
+[ command redirection ]
 ------
 check current alias:
 
@@ -111,6 +137,19 @@ Variables:
 a=8
 
 echo "$a"
+- 2
+echo '$a'
+- $a
+echo "$a=$a"
+- 2=2
+echo "\$a=$a"
+- $a=2
+
+"" will be used to print the variable value
+In interpolation, "" all meta characters are treated as metacharacters.
+
+'' will be used to print the exact text.
+In non-interpolation '', all meta characters are treated as string. 
 
 
 env variable:
@@ -125,23 +164,92 @@ env variable:
 %T [Time]
 
 # export HISTTIMEFORMAT="%d-%m-%y %T "
+- To add date and time in history command
 
 ------
 # history
+- To show commands history
 
+history -d index_number
+- Used to delete a specific indexed history
+
+history -c
+- Used to delete entire history
 ¬¬¬¬
+
+file filename
+- Display type of file
+
+mkdir directoryname{1..10}
+- To create multiple directories
+
+touch filename{1..10}
+- To create multiple files
+
+mkdir -p a/b/c/d
+- To create directories from parent to child
+
+`````````````````````````````````````````````````
+
+## If you add a space before running any command, that command will not get stored in history.
+
+`````````````````````````````````````````````````
+
+rmdir directory
+- To delete an empty directory
+
+env
+- To display environment variables
+
+
 
 Find Data:
 ```````````
 Syntax:
 ```````
 # find <where_to_find> -<attrib> <what_to_find>
+find /1 -name 2
+- To find a particular file name in a particular folder
 
 1) NAME
 `````````
 # find . -name natasha
 # find . -iname natasha
+- To display files those are case insensitive
 # find /home/edbda/ -iname "*.png"
+- To display files those are case insensitive with a particular extension
+
+sort filename
+- To sort the content present inside the file.
+
+sort -u filename
+- To sort the content present inside the file uniquely.
+
+more filename
+- To display content of file according to screensize. Then Percentage will appear on the screen. On pressing More, it will display more content.
+
+wc filename
+- Display lines, words and bytes of the filename along with the filename at the end
+
+wc -l filename
+- Displays line present in the file
+
+wc -w filename
+- Displays words present in the file
+
+wc -c filename
+- Displays bytes of the file
+
+We can also use
+wc -l -w -c filename
+
+head -n number filename
+OF head -number filename
+- To display the specified number of top lines of a file
+
+tail -n number filename
+OF tail -number filename
+- To display the specified number of bottom lines of a file
 
 2) SIZE:
 ````````
@@ -153,28 +261,43 @@ M : MB
 # find /home/edbda -size +2k
 # find /home/edbda -size -2k
 # find /home/edbda -size +2M -size -10M
+- To display files with size in that range
 
 3) TYPE:
 ````````
 # find /home/edbda -type f
 # find /home/edbda -type d
-# find /home/edbda -type f -iname "abc" 
+# find /home/edbda -type f -iname "abc"
+- To display files according to their type
 
 4) INDEX NUMBER:
 `````````````````
 # find /home/edbda -inum 45645456456
+- To find out the index number of the files, use command: ls -i
 
 | (pipe sign)
 `````````````````
 
 # cmd1 | cmd2
 --o/p---->i/p
+- Pass the output of one command as the input of the second command
 
 # cat filename
 # wc -l filename
 
 # cat data | wc –l
 
+adduser username
+- Create user
+
+id username
+- Displays uid and gid of user
+
+id -u username
+- Displays user id of user
+
+su - username
+- Disp
 grep : 
 ```````
 To search string/pattern/regex 
