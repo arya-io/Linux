@@ -133,7 +133,6 @@ Variables:
 - User defined var
 - System Defined var
 
-
 a=8
 
 echo "$a"
@@ -175,7 +174,6 @@ history -d index_number
 
 history -c
 - Used to delete entire history
-¬¬¬¬
 
 file filename
 - Display type of file
@@ -200,8 +198,6 @@ rmdir directory
 
 env
 - To display environment variables
-
-
 
 Find Data:
 ```````````
@@ -280,12 +276,14 @@ M : MB
 
 # cmd1 | cmd2
 --o/p---->i/p
-- Pass the output of one command as the input of the second command
+- Pass the output of one command as the input to the second command
 
 # cat filename
 # wc -l filename
 
 # cat data | wc –l
+
+````````````````````````````````````````````````````````````````````````````````````
 
 adduser username
 - Create user
@@ -296,22 +294,93 @@ id username
 id -u username
 - Displays user id of user
 
+id -g username
+- Displays group id of the user
+
 su - username
-- Disp
+- We can switch to another user present on Ubuntu
+
+logout OR exit
+- Take back to previous user.
+
+passwd username
+- to set the password for user
+
+userdel username
+- to delete a user without home directory
+
+userdel -r username
+-Used to delete a user account and remove associated files.
+
+gpasswd groupname
+- to set the password for group
+
+grep groupname /etc/group
+- to search for a specific group (groupname) in the /etc/group file on a Linux system. The /etc/group file contains information about groups and their members.
+
+grep groupname /etc/gshadow
+- to search for a specific group (groupname) in the /etc/gshadow file. The /etc/gshadow file contains secure group information, including group passwords, administrators, and members.
+
+grepdel groupname
+- delete a group
+
+````````````````````````````````````````````````````````````````````````````````
+
+ADVANCED USERS & GROUP MANAGEMENT:
+
+useradd -u 2000 username
+- Create a user with fixed (custom) UID.
+
+usermod -u 2001 username
+- Change the UID of an existing user
+
+groupadd -g 9000 groupname
+- Create a group with fixed (custom) GID.
+
+groupmod -g 9001 groupname
+- Modify the GID of an existing group.
+
+useradd -c "COMMENT" username
+- Create a user with comment
+
+usermod -c "MODIFIED COMMENT" username
+- Modify the comment for existing user
+
+useradd -m -d /home/homeName username
+- Create a user with custom Home Directory
+
+mkdir /home/homeName
+usermod -d /home/newhomeName username
+- Modify the home directory for existing user
+
+useradd -s /bin/nologin username
+- Create a user with custom shell
+Here, nologin is non-interactive shell
+
+usermod -s /bin/bash username
+- Modify a user with custom shell
+
+To check: grep groupnameORusername /etc/passwd
+
+`````````````````````````````````````````````````````````````````````````````````
+
 grep : 
 ```````
-To search string/pattern/regex 
+To search text/string/pattern/regex inside a file
 
 Syntax:
 ```````
 # grep "string" filename
 # grep "string1\|string2" filename
+- The \| is used as an OR operator to search for either string1 or string2
 
 inverse grep:
 ````````````
 # grep -v "string1" filename
+- to invert the match, meaning it returns all lines from the file that do not contain the specified pattern (string1)
 
 # grep -i "s" data
+- to search for string1 or string2 in a case-insensitive manner
 
 Metachar
 ````````
@@ -328,17 +397,22 @@ Only Match
 Before & After match
 ``````````````````````
 # grep -B 1 "^i" data
+- Displays lines that start with "i" in the file data, along with 1 line before each match.
+
 # grep -A 1 "^i" data
+- Displays lines that start with "i" in the file data, along with 1 line after each match.
+
 # grep -A 1 -B 1 "^i" data
+- Displays lines that start with "i" in the file data, along with 1 line before and 1 line after each match.
 
 Pattern/Regex:
 ``````````````
 [] : char class
 
-[a-z]
-[A-Z]
-[0-9]
-[a-zA-Z0-9]
+[a-z] : Matches any lowercase letter from 'a' to 'z'.
+[A-Z] : Matches any uppercase letter from 'A' to 'Z'.
+[0-9] : Matches any digit from '0' to '9'.
+[a-zA-Z0-9] : Matches any alphanumeric character (both lowercase and uppercase letters and digits).
 
 Extended grep
 # grep -E 
