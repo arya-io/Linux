@@ -23,8 +23,6 @@ user
 
 Generate token
 
-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
-
 GIT Version Control System [GVCS]
 `````````````````````````````````
 ***Git was created by Linus Torvalds for the development of the Linux Kernel***
