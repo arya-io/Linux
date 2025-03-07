@@ -222,7 +222,7 @@ sort -u filename
 - To sort the content present inside the file uniquely.
 
 more filename
-- To display content of file according to screensize. Then Percentage will appear on the screen. On pressing More, it will display more content.
+- To display content of file according to screensize. Then Percentage will appear on the screen. On pressing More (Enter), it will display more content.
 
 wc filename
 - Display lines, words and bytes of the filename along with the filename at the end
@@ -240,7 +240,7 @@ We can also use
 wc -l -w -c filename
 
 head -n number filename
-OF head -number filename
+OR head -number filename
 - To display the specified number of top lines of a file
 
 tail -n number filename
@@ -257,7 +257,7 @@ M : MB
 # find /home/edbda -size +2k
 # find /home/edbda -size -2k
 # find /home/edbda -size +2M -size -10M
-- To display files with size in that range
+- To display files according to their size in that range
 
 3) TYPE:
 ````````
@@ -415,50 +415,29 @@ Pattern/Regex:
 [a-zA-Z0-9] : Matches any alphanumeric character (both lowercase and uppercase letters and digits).
 
 Extended grep
+`````````````
 # grep -E 
 OR
-# egrep 
+# egrep
+- Using grep -E (or egrep) enables the use of extended regular expressions, 
+which allow more powerful pattern matching. 
+One of the features of extended regex is the use of {} for specifying ranges.
+
+{} : Specifies the number or range of repetitions of the preceding pattern.
 
 [] : char class
 {} : range
-[a-z]{10}
-[a-z]{10,20}
-[a-z]{10,}
 
+grep -E "[a-z]{10}" filename or egrep "[a-z]{10}" filename
+- [a-z]{10} : Matches exactly 10 lowercase letters in a row (e.g., abcdefghij).
 
-QUESTIONS
+grep -E "[a-z]{10,20}" filename
+- [a-z]{10,20} : Matches a sequence of 10 to 20 lowercase letters (e.g., abcdefghij or abcdefghijklmnopqrst).
 
-1. How do you print the lines between 5 and 10, both inclusive
+grep -E "[a-z]{10,}" filename
+[a-z]{10,} : Matches at least 10 lowercase letters, with no upper limit (e.g., abcdefghijk, abcdefghijklmnop, etc.).
 
-Answer: # head -10 filename | tail -6
-
-
-
-2. Create a new file “new.txt” that is a concatenation of “file1.txt” and “file2.txt”
-
-# cat file1.txt file2.txt > new.txt
-
-
-
-3. What is the output of the following code:
-
-os=Unix
-echo 1.$os 2."$os" 3.'$os' 4.$os
-
-
-
-4. To feed standard output of one command to standard input of another in a single shell session. example?
-
-|
-
-
-5.  Output of this command: 
-cat < file1 >> file2 | file3
-
-Syntax error
-
-
-
+````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 VIM EDITOR:
 
@@ -466,54 +445,163 @@ VIM EDITOR:
 update:
 `````````
 # apt update 
+- Updates the package lists from repositories to get information on the latest versions of available packages, 
+but does not install or upgrade any packages.
 
 Upgrade:
 ````````
 # apt upgrade
+- Installs the newest versions of all installed packages that have available updates, without removing existing packages or installing new ones.
 
 Install:
 ```````````
-# apt install package_name
+apt install package_name
+- Installs the specified package (package_name) along with its dependencies.
 
 Uninstall:
 ``````````
-# apt autoremove package_name
+apt autoremove package_name
+- Uninstalls the specified package (package_name) and automatically removes any unused dependencies that were installed with it.
 
-\
+````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 Command line mode commands:
 ````````````````````````````
-i : Take you to insert mode
-Esc : Go back to command line mode
-G : Take you to end of file.
-yy : yanked (copy) the current line and press p for paste below OR P for paste above
-nyy : yanked ( copy) n number of lines
-p : paste
-dd : cut the current line
-ndd : cut n number of lines
-u : undo
-ctrl + r : redu
+i
+- Take you to insert mode.
+
+Esc
+- Go back to command line mode.
+
+G
+- Take you to the end of the file.
+
+yy
+- Yank (copy) the current line; use `p` to paste below, `P` to paste above.
+
+nyy
+- Yank (copy) n number of lines.
+
+p
+- Paste the yanked or cut text below the cursor.
+
+dd
+- Cut the current line.
+
+ndd
+- Cut n number of lines.
+
+u
+- Undo the last change.
+
+ctrl + r
+- Redo the undone change.
+
+```````````````````````````````````````````````````````````
 
 Last line actions:
 ```````````````````
-:set nu : show line numbers
-:set nonu : remove line numbers
-:line_number : take you to specific line
-/word : search a word,to go to next occurrence press n
-To go to previous occurrence press N
-:%s/old_word/new_word : search and replace
-:%s/old_word/new_word/g : search and replace
-:wq save and quit
-:w save
-:q quit
-:w! save forcefully
-:q! quit forcefully
-:wq! Save and quit forcefully
+:set nu
+- Show line numbers.
 
+:set nonu
+- Remove line numbers.
 
+:line_number
+- Take you to a specific line.
+
+/word
+- Search for a word; press `n` for the next occurrence, `N` for the previous.
+
+:%s/old_word/new_word
+- Search and replace the first occurrence of a word.
+
+:%s/old_word/new_word/g
+- Search and replace all occurrences of a word. Here 'g' is for global.
+
+:wq
+- Save and quit.
+
+:w
+- Save the file.
+
+:q
+- Quit the editor.
+
+:w!
+- Save forcefully.
+
+:q!
+- Quit forcefully without saving.
+
+:wq!
+- Save and quit forcefully.
+
+````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+MEMBERSHIP
+``````````````
+
+Membership Types
+-------------------------
+|                      |
+Primary            Secondary
+|                      |
+- Assigned when    - Additional group(s)
+  user is created     user belongs to.
+- User's login     - Doesn't affect 
+  group.              login.
+- Defined in       - Defined in 
+  `/etc/passwd`.      `/etc/group`.
+
+1. Create a user as a primary member of a group.
+
+# groupadd groupname
+- Create a new group with the name `groupname`.
+
+# useradd -g groupname username
+- Create a new user `username` and assign `groupname` as their primary group.
+
+# id username
+- Display the user's group memberships (both primary and secondary).
+
+2. Create a user as a secondary member of a group
+
+# groupadd groupname
+- Create a new group with the name `groupname`.
+
+# useradd -G groupname username
+- Create a new user `username` and add them to `groupname` as a secondary group.
+
+# id username
+- Display the user's group memberships (both primary and secondary).
+
+# useradd -G groupname -m -d /home/kids -s /bin/bash username
+
+-G groupname: Adds the user to the specified secondary group (groupname).
+-m: Creates a home directory for the user if it does not exist.
+In this case, the home directory will be /home/kids as specified by -d.
+-d /home/kids: Specifies the home directory for the user.
+Instead of the default /home/username, the user's home directory will be set to /home/kids.
+-s /bin/bash: Specifies the user's login shell as /bin/bash.
+
+# cat /etc/group
+- Displays the contents of the /etc/group file, which lists all system groups, their Group ID (GID), 
+and the users that are members of each group (both primary and secondary members).
+
+``````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 Basic Permissions: [ File based ]
 ------------------
+
+ls -l
+- List files and directories in long format, displaying permissions, ownership, size, and modification date.
+
+ls -l filename
+- Display detailed information (long format) about a specific file.
+
+ls -R
+- Recursively list all files and directories, including subdirectories and their contents.
 
 1) Symbolic Method
 ===================
@@ -542,16 +630,13 @@ Permission Area:
 -rw-r--r-- 1 root root   43 Sep 23 01:56 file1
 
 
-
-
-
-Default permissions for file: 
+Default permissions for file (644): 
 -----------------------------
 read & write	: u
 read		: g
 read		: o
 
-Default permissions for dir: 
+Default permissions for dir (755): 
 ----------------------------
 read, write & execute	: u
 read & execute		: g
@@ -560,11 +645,22 @@ read & execute		: o
 Change permissions in Symbolic method:
 ---------------------------------------
 # chmod u+rx file/dir
+- Give the user (owner) read and execute permissions on the file/directory.
+
 # chmod u-r,g+rw,o-rwx file/dir
+- Remove read permission from the user, give the group read and write permissions, and remove all permissions for others.
+
 # chmod u=rw file/dir
+- Set the user’s permissions to read and write only, removing any other permissions.
+
 # chmod ugo=r file/dir
+- Set read-only permissions for the user, group, and others.
+
 # chmod a=r file/dir
+- Set read-only permissions for all users (user, group, and others).
+
 # chmod +x file/dir
+- Add execute permission to all users (user, group, and others).
 
 2) Numeric Method
 -----------------
@@ -582,39 +678,134 @@ r--	100	4
 rwx	111	7
 
 # chmod 711 file/dir
+- Set read, write, and execute permission for the user, and execute permission for group and others.
+
 # chmod 111 dir -R
-[-R : recursively]
+- Set execute-only permission for user, group, and others recursively on a directory and its contents.
 
+umask
+- To check the current `umask` value, which controls default file and directory permissions.
 
-Questions
+umask 0000
+- To change the `umask` value to `0000`. Here, the first `0` represents special permissions.
 
-Q. Create a collaborative directory /common/adm with the following characteristics:
+Default Permission Calculation:
+```````````````````````````````````
 
--Group ownership of /common/adm is admin
+Default Permission for Directory: Calculated as 777 - umask.
+- If umask is 0000, the default permission for a directory will be 777 (full read, write, and execute permissions for all).
+Default Permission for File: Calculated as 666 - umask.
+- If umask is 0000, the default permission for a file will be 666 (read and write permissions for all, but no execute permission).
 
--The directory should be readable, writable, and accessible to members of admin, but not to any other user. (It is understood that root has access to all ﬁles and directories on the system.)
+Example:
+- If umask is 0022:
+  - Directory default permission: 777 - 022 = 755 (rwx for user, rx for group and others).
+  - File default permission: 666 - 022 = 644 (rw for user, r for group and others).
+The umask controls how permissions are masked when new files and directories are created.
 
+`````````````````````````````````````````````````````````````````````````````````````````````````````````
 
+# OWNERSHIP IN LINUX
+````````````````````````
 
-Q. Copy the ﬁle /etc/fstab to /var/tmp. Conﬁgure the permissions of /var/tmp/fstab so that: 
+Every file and directory in Linux has an associated owner and group. 
+Ownership determines who can access or modify the file.
 
--The ﬁle /var/tmp/fstab is owned by the root user.
+- To check the current ownership of a file, use the following command:
+ls -l filename
+- Example:
+ls -l myfile.txt
+- Output:
+-rw-r--r-- 1 john developers 1024 Mar 10 10:30 myfile.txt
+- In this example, 'john' is the owner, and 'developers' is the group.
 
--The ﬁle /var/tmp/fstab belongs to the group root.
+- To change the user ownership of a file, use the 'chown' command:
+chown username filename
+- Example:
+chown john myfile.txt
+- This command changes the ownership of 'myfile.txt' to the user 'john'.
+- 'john' will now have permissions over the file according to the file's permission settings.
 
--The ﬁle /var/tmp/fstab should not be executable by anyone.
+- To change the group ownership of a file, use the 'chgrp' command:
+chgrp groupname filename
+- Example:
+chgrp developers myfile.txt
+- This command changes the group ownership of 'myfile.txt' to 'developers'.
 
--The user harry is able to read and write /var/tmp/fstab.
+- You can also change both the user and group ownership of a file in a single command:
+chown username:groupname filename
+- Example:
+chown john:developers myfile.txt
+- In this case, 'john' becomes the owner and 'developers' is the group.
 
--The user natasha can neither write nor read /var/tmp/fstab.
+But what if you want to give ownership to someone in "others"?
+In Linux, "others" refers to users who are neither the owner nor part of the group.
+If a user from the "others" category needs ownership, you can follow these steps:
 
--all other users (current or future) have the ability to read /var/tmp/fstab 
+# Step 1: Change ownership to the user in "others":
+chown username filename
+- Example:
+chown jane myfile.txt
+# This removes 'jane' from the "others" category and makes her the owner of 'myfile.txt'.
 
-Q. Create a Command Shell Environment : 
--Create a command qstat.
+# Step 2: If needed, add the user to a specific group using the 'usermod' command:
+usermod -G groupname username
+- Example:
+usermod -G developers jane
+- This command adds 'jane' to the 'developers' group.
 
--It should able to execute the following command 
-( ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm )
+# Step 3: Change the group ownership of the file to the appropriate group:
+chgrp groupname filename
+- Example:
+chgrp developers myfile.txt
+- This changes the group ownership of 'myfile.txt' to 'developers', where 'jane' is now a member.
+
+RECURSIVE OWNERSHIP CHANGES
+
+If you want to change the ownership of a directory and ALL its contents (files and subdirectories),
+you need to use the '-R' option to apply the change recursively.
+
+- To recursively change the user ownership of a directory and its contents:
+chown -R username directoryname
+- Example:
+chown -R john /mydir
+- This command changes the ownership of '/mydir' and all the files and subdirectories within to 'john'.
+
+- To recursively change the group ownership of a directory and its contents:
+chgrp -R groupname directoryname
+- Example:
+chgrp -R developers /mydir
+- This command changes the group ownership of '/mydir' and all its contents to 'developers'.
+
+- To change both the user and group ownership recursively:
+chown -R username:groupname directoryname
+- Example:
+chown -R john:developers /mydir
+- This changes both the user and group ownership of '/mydir' and all its contents to 'john' and 'developers'.
+
+OTHER USEFUL OWNERSHIP COMMANDS
+
+Sometimes, you might need to check which files are owned by a specific user or group.
+
+- To find all files owned by a particular user, you can use the 'find' command:
+find /path/to/search -user username
+- Example:
+find /home -user john
+- This command finds all files under '/home' that are owned by 'john'.
+
+- Similarly, you can search for files belonging to a specific group:
+find /path/to/search -group groupname
+- Example:
+find /home -group developers
+- This command finds all files under '/home' that belong to the 'developers' group.
+
+`````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+ACCESS CONTROL LIST (ACL)
+
+To apply ACL, we don't need to change basic permission OR
+any ownership of a file or a folder/directory.
+
 
 
 
