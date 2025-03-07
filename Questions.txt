@@ -1,3 +1,67 @@
+QUESTIONS
+`````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+1. How do you print the lines between 5 and 10, both inclusive
+
+Answer: # head -10 filename | tail -6
+
+
+
+2. Create a new file “new.txt” that is a concatenation of “file1.txt” and “file2.txt”
+
+Answer:  cat file1.txt file2.txt > new.txt
+
+
+3. What is the output of the following code:
+
+os=Unix
+echo 1.$os 2."$os" 3.'$os' 4.$os
+
+Answer: 1.Unix 2.Unix 3.$os 4.Unix
+
+
+4. To feed standard output of one command to standard input of another in a single shell session. example?
+
+Answer: |
+
+
+5.  Output of this command: 
+cat < file1 >> file2 | file3
+
+Answer: Syntax error
+
+`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
+
+Questions
+
+Q. Create a collaborative directory /common/adm with the following characteristics:
+
+-Group ownership of /common/adm is admin
+
+-The directory should be readable, writable, and accessible to members of admin, but not to any other user. (It is understood that root has access to all ﬁles and directories on the system.)
+
+
+
+Q. Copy the ﬁle /etc/fstab to /var/tmp. Conﬁgure the permissions of /var/tmp/fstab so that: 
+
+-The ﬁle /var/tmp/fstab is owned by the root user.
+
+-The ﬁle /var/tmp/fstab belongs to the group root.
+
+-The ﬁle /var/tmp/fstab should not be executable by anyone.
+
+-The user harry is able to read and write /var/tmp/fstab.
+
+-The user natasha can neither write nor read /var/tmp/fstab.
+
+-all other users (current or future) have the ability to read /var/tmp/fstab 
+
+Q. Create a Command Shell Environment : 
+-Create a command qstat.
+
+-It should able to execute the following command 
+( ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm )
+
 Assignment 2
 `````````````
 Q. Write a menu based script which displays the following options :
