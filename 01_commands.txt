@@ -600,6 +600,9 @@ ls -l
 ls -l filename
 - Display detailed information (long format) about a specific file.
 
+ls -ld directoryName
+- Display detailed information (long format) about a specific directory/folder.
+
 ls -R
 - Recursively list all files and directories, including subdirectories and their contents.
 
