@@ -1,10 +1,12 @@
 Version Control without Git
 
 sha1sum {file_name}
+- The command `sha1sum {file_name}` computes and displays the SHA-1 hash (a 40-character checksum) of the specified file, allowing verification of file integrity or authenticity.
 
-Git and GitHub
+GIT AND GITHUB
 
 git init
+- The command git init initializes a new, empty Git repository in the current directory, creating a .git subdirectory to track version control for the project.
 
 git log
 - To track the modifications
@@ -96,11 +98,6 @@ Check version:
 # git --version
 
 
-
-
-
-
-
 When you start using Git, you'll need to put in a username and an email id :
 
 # git config --global user.name "username"
@@ -114,7 +111,7 @@ Use the --unset option to remove a setting:
 # git config --unset --global user.email
 
 
-# git clone https://githib.com/account_name/repo.git
+# git clone https://github.com/account_name/repo.git
 # cd repo/
 # ls -a
 .git
@@ -131,7 +128,6 @@ TO initializing a git repository in the current directory (specified in your ter
 # git add .
 OR
 # git add FILENAME
-
 
 
 Look at just the repository specific settings
@@ -166,11 +162,6 @@ List Remote Branches
 `````````````````````
 # git branch -a
 
-
-
-
-
-
 ---
 # cat >> readme.md
 llll
@@ -196,13 +187,6 @@ OR
 [first 835e51c] lol1
  1 file changed, 1 insertion(+)
 
-
-
-
-
-
-
-
 Merge 'test' branch with 'main' branch:
 ````````````````````````````````````````
 # git checkout main
@@ -212,14 +196,6 @@ Merge 'test' branch with 'main' branch:
 To View Your Commits
 ````````````````````
 # git log
-
-
-
-
-
-
-
-
 
 show-branch
 ```````````
@@ -339,19 +315,6 @@ username: sinhakiara
 https://github.com/Dheerajmadhukar/karma_v2
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 Git Internals:
 --------------
 The .git directory
@@ -416,7 +379,6 @@ We can dump the directory tree referenced in the commit. This should be a descri
 040000 tree e46f374f5b36c6f02fb379044f754d795	lib
 
 
-
 Dumping the lib directory
 `````````````````````````
 # git cat-file -p <libhash>
@@ -432,9 +394,4 @@ Hard delete unpublished commits
 
 # git reset --hard {SHA1 key}
 
-
-
-
-
-
-
+```````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
