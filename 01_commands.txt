@@ -991,6 +991,10 @@ expr 2 + 2
 expr 2 - 2
 expr 2 / 2
 expr 2 \* 2
+
+To run expr and echo together:
+
+echo "The addition is: " $(expr $a + $b)
 ===============================
 Conditions:
 ```````````
