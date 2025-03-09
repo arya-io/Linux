@@ -45,8 +45,6 @@ eg:
 # docker rm -f $(docker ps -aq)
 
 
-
-
 5) images : list images
 
 # docker images
@@ -58,8 +56,6 @@ PULL:
 # docker pull image:tag
 
 
-
-
 6) rmi : Remove image [ -f : forcefully ]
 
 # docker rmi <image_id>
@@ -68,13 +64,6 @@ eg:
 
 # docker rmi $(docker images -q)
 # docker rmi -f $(docker images -q)
-
-
-
-
-
-
-
 
 7) pull : Only download image
 
@@ -107,17 +96,12 @@ GW:
 # # docker inspect -f '{{json .NetworkSettings.Gateway}}' container_ID/Name
 
 
-
-
-
 Port mapping:
 -------------
 
 * Lets run a single container with a simple web application (httpd:80) on port 8080 on host machine.
 
 # docker run -d --name "web1" -p 8080:80 httpd
-
-
 
 
 Image: nginx
