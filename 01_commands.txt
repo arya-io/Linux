@@ -1248,6 +1248,60 @@ case $a in
                 exit
                 ;;
         *)
-                echo "WTF"
+                echo "Very Good Day"
                 ;;
 esac
+```````````````````````````````````````````````````````````````````````````````````
+
+IO STREAMS
+-------------
+
+We have three types of streams:
+- stdin(file descriptor 0)
+- stdout(file descriptor 1)
+- stderr(file descriptor 2)
+
+stdin
+-------
+
+cat > file
+redhat
+redhat
+
+passwd nix < file
+password set successfully
+
+-------------------------------
+
+stdout
+-------
+
+echo "LOL" > file
+cat file
+
+Standard Output Redirection (stdout):
+echo "LOL" > /dev/null
+
+- This command sends the output "LOL" to /dev/null, which effectively discards the output. /dev/null is a special device that discards everything written to it.
+
+----------------------------------
+
+stderr
+-------
+
+ppwwdd 2> /dev/null
+- Here, ppwwdd is a non-existent command. The 2> redirects the error (standard error stream stderr) caused by this command to /dev/null, which suppresses the error message.
+
+pwd 2> /dev/null
+- The pwd command outputs the current working directory, but the 2> redirects any errors to /dev/null. Since pwd typically doesn’t generate errors, the command will still display the output unless an error occurs.
+
+
+To redirect output and error both:
+
+pwd &> /dev/null
+- This redirects both the output of the pwd command and any errors to /dev/null.
+
+ppwwdd &> /dev/null
+- Since ppwwdd is not a valid command, both the error and any potential output (if the command existed) would be redirected to /dev/null, effectively silencing both.
+
+````````````````````````````````````````````````````````````````````````````
