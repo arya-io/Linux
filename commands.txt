@@ -806,8 +806,11 @@ ACCESS CONTROL LIST (ACL)
 To apply ACL, we don't need to change basic permission OR
 any ownership of a file or a folder/directory.
 
+After the basic permission area, if you'll see '+' sign, it represents ACL is applied for file or folder/directory.
 
-
+setfacl -m u:j1:rw file1.txt: Sets read and write permissions for user "j1" on "file1.txt".
+setfacl -m g:groupname:rw file1.txt: Sets read and write permissions for the group "groupname" on "file1.txt".
+getfacl filename: Displays the Access Control List (ACL) for the specified file "filename".
 
 Process Management:
 
@@ -918,85 +921,6 @@ ctrl+z [stop]
 # bg %2 [ To start in BG ]
 +++++++++++++++++++++++++++++++++++
 
-1. Create the following users, groups, and group memberships:
-
--A group named admin
-# groupadd admin
-
--A user harry who belongs to admin as a secondary group
-# useradd -G admin harry
-
--A user natasha who also belongs to admin as a secondary group
-# useradd -G admin natasha
-
--A user sarah who does not have access to an interactive shell on the system, and who is not a member of admin
-# useradd -s /bin/nologin sarah
-
--harry, natasha, and sarah should all have the password of "redhat@123?"
-# passwd user
-
-
-
-Q. You need to change the permissions of a file named schedule.txt such that the file owner can edit the file, users who are members of the group that owns the file can edit it, and users who are not owners and don't belong to the owning group can view it but not modify it. Which command will do this?
-
-224
-
-
-
-Q. Your Linux system's umask variable is currently set to a value of 077. A user named 'jason' (who is a member of the users group) creates a dir named /tasks. What can users who are members of the users group do with this file?
-
-
-
-777 - 077 = 700
-
-
-
-Q. Create a collaborative directory /common/adm with the following characteristics:
-
--Group ownership of /common/adm is admin
-
--The directory should be readable, writable, and accessible to members of admin, but not to any other user. (It is understood that root has access to all ﬁles and directories on the system.)
-
-
-
-Q. Create a collaborative directory /common/adm with the following characteristics:
-
--Group ownership of /common/adm is admin
-
--The directory should be readable, writable, and accessible to members of admin, but not to any other user. (It is understood that root has access to all ﬁles and directories on the system.)
-
-# mkdir -p /common/adm
-# chgrp admin /common/adm
-# chmod 770 /common/adm
-
-
-Q. Copy the ﬁle /etc/fstab to /var/tmp. Conﬁgure the permissions of /var/tmp/fstab so that: 
-
--The ﬁle /var/tmp/fstab is owned by the root user.
--The ﬁle /var/tmp/fstab belongs to the group root.
--The ﬁle /var/tmp/fstab should not be executable by anyone.
--The user harry is able to read and write /var/tmp/fstab.
--The user natasha can neither write nor read /var/tmp/fstab.
--all other users (current or future) have the ability to read /var/tmp/fstab 
-
-# cp -rfv /etc/fstab /var/tmp/
-# chown root /var/tmp/fstab
-# chgrp root /var/tmp/fstab
-# setfacl -m u:harry:6 /var/tmp/fstab
-# setfacl -m u:natasha:0 /var/tmp/fstab
-# chmod o=r /var/tmp/fstab
-
-
-Q. Create a Command Shell Environment : 
--Create a command qstat.
-
--It should able to execute the following command 
-( ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm )
-
-# alias qstat='ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm'
-# qstat
-
-
 Shell Scripting:
 ----------------To run multiple objects[binary/commands] using a single object[file].
 
@@ -1023,12 +947,6 @@ OR
 
 # bash -x runme.sh
 
-
-
-
-
-
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Variable:
 ---------
@@ -1045,11 +963,6 @@ echo "My target for today is: ${target:-DEFAULT}"
 -----------
 
 
-
-
-
-
-
 #!/bin/bash
 target=$(whoami)
 echo "My user for today is: $target"
@@ -1058,10 +971,6 @@ echo "My user for today is: $target"
 target=`whoami`
 echo "My user for today is: $target"
 -----------
-
-
-
-
 
 
 Arithmetic
@@ -1099,7 +1008,6 @@ fi
 
 
 
-
 2) if...then...else...fi
 `````````````````````````
 #!/bin/bash
@@ -1112,7 +1020,6 @@ else
 fi
 
 
-
 3) if...then...elif...then...fi
 `````````````````````````````````
 #!/bin/bash
@@ -1123,9 +1030,6 @@ if [[ $a == "0" ]];then
 elif [[ $a == "1" ]];then
 	echo "Kidding"
 fi
-
-
-
 
 4) if...then...elif...then...else...fi
 ```````````````````````````````````````
@@ -1144,15 +1048,6 @@ fi
 ```````````````````````
 String comparisons: ==, !=, <, <=, >, >=, =~, !~
 Numeric Comparisons: -eq, -ne, -lt, -le, -gt, -ge
-
-
-
-
-
-
-
-
-
 
 [[ NUM == NUM ]]	Equal
 [[ NUM != NUM ]]	Not Equal
@@ -1178,9 +1073,6 @@ File Ops:
 [[ -s FILE ]] : File size not empty
 [[ ! -s FILE ]] : File size empty
 
-
-
-
 2) Logical Operators:
 ``````````````````````
 ||, &&, !
@@ -1190,28 +1082,6 @@ File Ops:
 [[ $a == "0" ]] || [[ $b == "1" ]]
 
 [[ ! -z $VAR ]] : Not Empty
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 -----------
 
@@ -1236,7 +1106,6 @@ echo "It done"
 else
 echo "WTF"
 fi
-
 
 3) if...then...elif...then...fi
 
@@ -1264,18 +1133,8 @@ else
 echo "WTF"
 fi
 
-
-
-
-
-
-
-
-
-
 while loop:
 -----------
-
 
 while true
 do
@@ -1323,14 +1182,6 @@ while read -r sub; do
         fi
 done < $file
 
-
-
-
-
-
-
-
-
 nested if:
 ----------
 
@@ -1347,17 +1198,6 @@ if [ -f "$file" ]; then
 else
 	echo "$file not found"
 fi
-
-
-
-
-
-
-
-
-
-
-
 
 Functions:
 ----------
@@ -1381,14 +1221,6 @@ else
 	echo "$file not found"
 fi
 ----------------------------------------------------------
-
-
-
-
-
-
-
-
 
 CASE in BASH
 ------------
