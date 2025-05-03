@@ -1,1314 +1,2067 @@
-Linux Notes
+# 🐧 Linux Notes
 
-Basic Commands:
-----------------
-PATH:
-`````
-+ Absolute [ /home/natasha/Desktop ] 
-+ Relative [ Desktop ]
+---
 
-pwd
-- print working directory
+## 📁 Basic Commands
 
-cd
-- Change Directory
+### 📍 PATH
 
-cd path
-cd .. [eg: cd ../../]
+* **Absolute Path**: `/home/natasha/Desktop`
+* **Relative Path**: `Desktop` (relative to current directory)
 
-ls	[ List of dir contents ]
-	# pwd
-	/
-	# ls /root/Desktop
+---
 
-whoami
-- To show current logged in user name
+### 📌 pwd
 
-mkdir dirname
-- Make new directory
+* Prints the **current working directory**
 
-touch filename
-- To create a blank file (A file without any content)
+---
 
-cat > filename
-- To create a new file with text
-	e.g: # cat > marvels
-		TEXT
-		[ctrl+d]-> save & exit
+### 📂 cd
 
-> [Standard output to the program]
-< [Standard input to the program]
+* Changes the **current directory**
 
-cat filename
-- To show the text of file
+Examples:
 
-cat >> file
-- Append the text in existing file.
-		e.g: # cat >> marvels
-		TEXT2
-		[ctrl+d]-> exit
+```bash
+cd path/to/folder       # Go to specified path
+cd ..                   # Move one directory up
+cd ../../               # Move two levels up
+```
 
-date
-- Display current date and time
+---
 
-clear
-- To clear the screen/terminal OR ctrl+l
+### 📋 ls
 
-COPY:
------
-a) File to File:
-----------------
-	# cp srcFilename dstFilename
-	OR
-	# cp -fv srcFilename dstFilename
-	[-f : Forcefully ]
-	[-v : Verbose]View the process in detail.
+* Lists the contents of a directory
 
-b) File/Dir to Dir
-------------------
-	# cp -rfv srcFile/Dir dstDir 
-[ -r : Recursive ]*
--f : forcefully
--v : verbose (to show process)
+```bash
+ls                      # List contents in current dir
+ls /root/Desktop        # List contents of Desktop dir
+```
 
-man cmd	[ Manual of command ]
-	e.g: # man mkdir
+---
 
+### 👤 whoami
 
-REMOVE:
--------
-a) A file:
-----------
-	# rm filename
-	# rm -fv  filename
-b) A dir:
----------
-	# rm -rfv dirname
+* Displays the **current logged-in username**
 
-MOVE: [cut n paste ]
------
-# mv src dst
-Move a file from source to destination
+---
 
-# mv oldname newname
-This command is used to rename 'oldname' file.
+### 🗂️ mkdir
 
-# mkdir .dirname [Hidden Content]
-# ls -a [ Show all content with hidden data]
+* Creates a **new directory**
 
-whoami
-Display current User name 
+```bash
+mkdir myfolder
+```
 
-echo "msg" : Print the msg on terminal
+---
 
-# tty
-- To display terminal name
+### 📝 touch
+
+* Creates a **blank file**
+
+```bash
+touch file.txt
+```
+
+---
+
+### 🧾 cat > filename
+
+* Creates a **new file** with content from terminal input
+
+```bash
+cat > marvels
+# Type content here
+[Ctrl + D]  # Save & Exit
+```
+
+---
+
+### 🔁 cat filename
+
+* Displays the contents of a file
+
+---
+
+### ➕ cat >> filename
+
+* Appends text to an existing file
+
+```bash
+cat >> marvels
+# Additional content
+[Ctrl + D]
+```
+
+---
+
+### ⏱️ date
+
+* Displays the **current system date and time**
+
+---
+
+### 🧹 clear / Ctrl + L
+
+* Clears the terminal screen
+
+---
+
+## 📤 Input & Output Operators
+
+```bash
+>   # Standard output redirection
+<   # Standard input redirection
+```
+
+---
+
+## 📄 COPY
+
+### 🔄 a) File to File
+
+```bash
+cp src.txt dest.txt
+cp -fv src.txt dest.txt     # Force and Verbose mode
+```
+
+### 📁 b) File/Directory to Directory
+
+```bash
+cp -rfv src/ dest/
+# -r: Recursive
+# -f: Force overwrite
+# -v: Verbose
+```
+
+---
+
+## 📘 man command
+
+* View the **manual/help** for a command
+
+```bash
+man mkdir
+```
+
+---
+
+## ❌ REMOVE
+
+### 🗑️ a) Remove File
+
+```bash
+rm filename
+rm -fv filename
+```
+
+### 🧺 b) Remove Directory
+
+```bash
+rm -rfv dirname
+```
+
+---
+
+## 📦 MOVE (Cut & Paste)
+
+### 🔀 Move File/Dir
+
+```bash
+mv src dst
+```
+
+### ✏️ Rename File/Dir
+
+```bash
+mv oldname newname
+```
+
+---
+
+## 🕵️‍♂️ Hidden Files
+
+### 🛠️ Create Hidden Directory
+
+```bash
+mkdir .hiddenfolder
+```
+
+### 👁️ Show All (including hidden)
+
+```bash
+ls -a
+```
+
+---
+
+## 👨‍💻 whoami (again, reminder)
+
+* Displays the **username** of the current session
+
+---
+
+## 🖨️ Echo, Terminal, & Messaging
+
+### 🔊 `echo "message"`
+
+* Prints the message on the terminal
+
+```bash
+echo "Hello, world!"
+```
+
+---
+
+### 📺 `tty`
+
+* Displays the **current terminal name**
+
+```bash
 /dev/pts/0
+```
 
+---
+
+### 📤 Send message to another terminal
+
+```bash
 echo "LOL" > /dev/pts/1
-- To display message from one terminal to another terminal
+```
 
+* Displays the message **"LOL"** on another user's terminal (if permissions allow)
+
+---
+
+### 📄 Store output directly in a file
+
+```bash
 echo "Darlings" > kiki
-- To store content directly in a file with echo command
+```
 
+* Creates `kiki` file and stores the message in it
 
-alias:
-[ command redirection ]
-------
-check current alias:
+---
 
-# alias
+## 🧙‍♂️ Aliases
 
-Create :
+### 🔍 View current aliases
 
-# alias money='whoami'
+```bash
+alias
+```
 
-Remove:
+---
 
-# unalias money
+### ➕ Create an alias
 
+```bash
+alias money='whoami'
+```
 
-Variables:
+* Now running `money` will show the current user
 
-- User defined var
-- System Defined var
+---
 
+### ❌ Remove an alias
+
+```bash
+unalias money
+```
+
+---
+
+## 📦 Variables
+
+### 🧑‍💻 User-defined variable
+
+```bash
 a=8
+```
 
-echo "$a"
-- 2
-echo '$a'
-- $a
-echo "$a=$a"
-- 2=2
-echo "\$a=$a"
-- $a=2
+### 🔁 Printing variable values
 
-"" will be used to print the variable value
-In interpolation, "" all meta characters are treated as metacharacters.
+```bash
+echo "$a"       # Outputs: 8
+echo '$a'       # Outputs: $a
+echo "$a=$a"    # Outputs: 8=8
+echo "\$a=$a"   # Outputs: $a=8
+```
 
-'' will be used to print the exact text.
-In non-interpolation '', all meta characters are treated as string. 
+📌 **Tip**:
 
+* `""` (Double quotes) allow **variable expansion**
+* `''` (Single quotes) treat everything **literally**
 
-env variable:
--------------
-# env
+---
 
-# echo $HISTTIMEFORMAT
+## 🌍 Environment Variables
 
-%d [Day]
-%m [Month]
-%y [Year]
-%T [Time]
+### 🧾 View all env variables
 
-# export HISTTIMEFORMAT="%d-%m-%y %T "
-- To add date and time in history command
-
-------
-# history
-- To show commands history
-
-history -d index_number
-- Used to delete a specific indexed history
-
-history -c
-- Used to delete entire history
-
-file filename
-- Display type of file
-
-mkdir directoryname{1..10}
-- To create multiple directories
-
-touch filename{1..10}
-- To create multiple files
-
-mkdir -p a/b/c/d
-- To create directories from parent to child
-
-`````````````````````````````````````````````````
-
-## If you add a space before running any command, that command will not get stored in history.
-
-`````````````````````````````````````````````````
-
-rmdir directory
-- To delete an empty directory
-
+```bash
 env
-- To display environment variables
+```
 
-Find Data:
-```````````
-Syntax:
-```````
-# find <where_to_find> -<attrib> <what_to_find>
-find /1 -name 2
-- To find a particular file name in a particular folder
+---
 
-1) NAME
-`````````
-# find . -name natasha
-# find . -iname natasha
-- To display files those are case insensitive
-# find /home/edbda/ -iname "*.png"
-- To display files those are case insensitive with a particular extension
+### 🔍 Show a specific env var
 
-sort filename
-- To sort the content present inside the file.
+```bash
+echo $HISTTIMEFORMAT
+```
 
-sort -u filename
-- To sort the content present inside the file uniquely.
+---
 
-more filename
-- To display content of file according to screensize. Then Percentage will appear on the screen. On pressing More (Enter), it will display more content.
+### 🕒 Format for command history timestamp
 
-wc filename
-- Display lines, words and bytes of the filename along with the filename at the end
+```bash
+%d  # Day
+%m  # Month
+%y  # Year
+%T  # Time
+```
 
-wc -l filename
-- Displays line present in the file
+---
 
-wc -w filename
-- Displays words present in the file
+### 🛠️ Set timestamp format for history
 
-wc -c filename
-- Displays bytes of the file
+```bash
+export HISTTIMEFORMAT="%d-%m-%y %T "
+```
 
-We can also use
-wc -l -w -c filename
+---
 
-head -n number filename
-OR head -number filename
-- To display the specified number of top lines of a file
+### 🕘 Command History
 
-tail -n number filename
-OF tail -number filename
-- To display the specified number of bottom lines of a file
+```bash
+history          # Show command history
+history -d N     # Delete entry at index N
+history -c       # Clear entire history
+```
 
-2) SIZE:
-````````
-k : KB
-G : GB
-M : MB
+⚠️ **Secret Tip**:
 
-# find /home/edbda -size 2k
-# find /home/edbda -size +2k
-# find /home/edbda -size -2k
-# find /home/edbda -size +2M -size -10M
-- To display files according to their size in that range
+* Adding a space **before a command** prevents it from being stored in history!
 
-3) TYPE:
-````````
-# find /home/edbda -type f
-# find /home/edbda -type d
-# find /home/edbda -type f -iname "abc"
-- To display files according to their type
+---
 
-4) INDEX NUMBER:
-`````````````````
-# find /home/edbda -inum 45645456456
-- To find out the index number of the files, use command: ls -i
+## 📂 File & Directory Management
 
-| (pipe sign)
-`````````````````
+### 🕵️ Check file type
 
-# cmd1 | cmd2
---o/p---->i/p
-- Pass the output of one command as the input to the second command
+```bash
+file filename
+```
 
-# cat filename
-# wc -l filename
+---
 
-# cat data | wc –l
+### 📦 Create multiple directories
 
-````````````````````````````````````````````````````````````````````````````````````
+```bash
+mkdir dir{1..10}
+```
 
-adduser username
-- Create user
+---
 
-id username
-- Displays uid and gid of user
+### 📄 Create multiple files
 
-id -u username
-- Displays user id of user
+```bash
+touch file{1..10}
+```
 
-id -g username
-- Displays group id of the user
+---
 
-su - username
-- We can switch to another user present on Ubuntu
+### 📚 Create nested directories (parent → child)
 
-logout OR exit
-- Take back to previous user.
+```bash
+mkdir -p a/b/c/d
+```
 
-passwd username
-- to set the password for user
+---
 
-userdel username
-- to delete a user without home directory
+### 🧹 Remove empty directory
 
-userdel -r username
--Used to delete a user account and remove associated files.
+```bash
+rmdir directory
+```
 
-gpasswd groupname
-- to set the password for group
+---
 
-grep groupname /etc/group
-- to search for a specific group (groupname) in the /etc/group file on a Linux system. The /etc/group file contains information about groups and their members.
+## 🔍 Finding Data with `find` Command
 
-grep groupname /etc/gshadow
-- to search for a specific group (groupname) in the /etc/gshadow file. The /etc/gshadow file contains secure group information, including group passwords, administrators, and members.
+### 🧾 Syntax:
 
-grepdel groupname
-- delete a group
-
-````````````````````````````````````````````````````````````````````````````````
-
-ADVANCED USERS & GROUP MANAGEMENT:
-
-useradd -u 2000 username
-- Create a user with fixed (custom) UID.
-
-usermod -u 2001 username
-- Change the UID of an existing user
-
-groupadd -g 9000 groupname
-- Create a group with fixed (custom) GID.
-
-groupmod -g 9001 groupname
-- Modify the GID of an existing group.
-
-useradd -c "COMMENT" username
-- Create a user with comment
-
-usermod -c "MODIFIED COMMENT" username
-- Modify the comment for existing user
-
-useradd -m -d /home/homeName username
-- Create a user with custom Home Directory
-
-mkdir /home/homeName
-usermod -d /home/newhomeName username
-- Modify the home directory for existing user
-
-useradd -s /bin/nologin username
-- Create a user with custom shell
-Here, nologin is non-interactive shell
-
-usermod -s /bin/bash username
-- Modify a user with custom shell
-
-To check: grep groupnameORusername /etc/passwd
-
-`````````````````````````````````````````````````````````````````````````````````
-
-grep : 
-```````
-To search text/string/pattern/regex inside a file
-
-Syntax:
-```````
-# grep "string" filename
-# grep "string1\|string2" filename
-- The \| is used as an OR operator to search for either string1 or string2
-
-inverse grep:
-````````````
-# grep -v "string1" filename
-- to invert the match, meaning it returns all lines from the file that do not contain the specified pattern (string1)
-
-# grep -i "s" data
-- to search for string1 or string2 in a case-insensitive manner
-
-Metachar
-````````
-^ : Start of line
-$ : End of line
-
-# grep -i "^s" data
-# grep -i "s$" data
-
-Only Match
-```````````
-# grep -o "string" filename
-
-Before & After match
-``````````````````````
-# grep -B 1 "^i" data
-- Displays lines that start with "i" in the file data, along with 1 line before each match.
-
-# grep -A 1 "^i" data
-- Displays lines that start with "i" in the file data, along with 1 line after each match.
-
-# grep -A 1 -B 1 "^i" data
-- Displays lines that start with "i" in the file data, along with 1 line before and 1 line after each match.
-
-Pattern/Regex:
-``````````````
-[] : char class
-
-[a-z] : Matches any lowercase letter from 'a' to 'z'.
-[A-Z] : Matches any uppercase letter from 'A' to 'Z'.
-[0-9] : Matches any digit from '0' to '9'.
-[a-zA-Z0-9] : Matches any alphanumeric character (both lowercase and uppercase letters and digits).
-
-Extended grep
-`````````````
-# grep -E 
-OR
-# egrep
-- Using grep -E (or egrep) enables the use of extended regular expressions, 
-which allow more powerful pattern matching. 
-One of the features of extended regex is the use of {} for specifying ranges.
-
-{} : Specifies the number or range of repetitions of the preceding pattern.
-
-[] : char class
-{} : range
-
-grep -E "[a-z]{10}" filename or egrep "[a-z]{10}" filename
-- [a-z]{10} : Matches exactly 10 lowercase letters in a row (e.g., abcdefghij).
-
-grep -E "[a-z]{10,20}" filename
-- [a-z]{10,20} : Matches a sequence of 10 to 20 lowercase letters (e.g., abcdefghij or abcdefghijklmnopqrst).
-
-grep -E "[a-z]{10,}" filename
-[a-z]{10,} : Matches at least 10 lowercase letters, with no upper limit (e.g., abcdefghijk, abcdefghijklmnop, etc.).
-
-````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-
-VIM EDITOR:
-
-
-update:
-`````````
-# apt update 
-- Updates the package lists from repositories to get information on the latest versions of available packages, 
-but does not install or upgrade any packages.
-
-Upgrade:
-````````
-# apt upgrade
-- Installs the newest versions of all installed packages that have available updates, without removing existing packages or installing new ones.
-
-Install:
-```````````
-apt install package_name
-- Installs the specified package (package_name) along with its dependencies.
-
-Uninstall:
-``````````
-apt autoremove package_name
-- Uninstalls the specified package (package_name) and automatically removes any unused dependencies that were installed with it.
-
-````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-
-Command line mode commands:
-````````````````````````````
-i
-- Take you to insert mode.
-
-Esc
-- Go back to command line mode.
-
-G
-- Take you to the end of the file.
-
-yy
-- Yank (copy) the current line; use `p` to paste below, `P` to paste above.
-
-nyy
-- Yank (copy) n number of lines.
-
-p
-- Paste the yanked or cut text below the cursor.
-
-dd
-- Cut the current line.
-
-ndd
-- Cut n number of lines.
-
-u
-- Undo the last change.
-
-ctrl + r
-- Redo the undone change.
-
-```````````````````````````````````````````````````````````
-
-Last line actions:
-```````````````````
-:set nu
-- Show line numbers.
-
-:set nonu
-- Remove line numbers.
-
-:line_number
-- Take you to a specific line.
-
-/word
-- Search for a word; press `n` for the next occurrence, `N` for the previous.
-
-:%s/old_word/new_word
-- Search and replace the first occurrence of a word.
-
-:%s/old_word/new_word/g
-- Search and replace all occurrences of a word. Here 'g' is for global.
-
-:wq
-- Save and quit.
-
-:w
-- Save the file.
-
-:q
-- Quit the editor.
-
-:w!
-- Save forcefully.
-
-:q!
-- Quit forcefully without saving.
-
-:wq!
-- Save and quit forcefully.
-
-````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
-
-MEMBERSHIP
-``````````````
-
-Membership Types
--------------------------
-|                      |
-Primary            Secondary
-|                      |
-- Assigned when    - Additional group(s)
-  user is created     user belongs to.
-- User's login     - Doesn't affect 
-  group.              login.
-- Defined in       - Defined in 
-  `/etc/passwd`.      `/etc/group`.
-
-1. Create a user as a primary member of a group.
-
-# groupadd groupname
-- Create a new group with the name `groupname`.
-
-# useradd -g groupname username
-- Create a new user `username` and assign `groupname` as their primary group.
-
-# id username
-- Display the user's group memberships (both primary and secondary).
-
-2. Create a user as a secondary member of a group
-
-# groupadd groupname
-- Create a new group with the name `groupname`.
-
-# useradd -G groupname username
-- Create a new user `username` and add them to `groupname` as a secondary group.
-
-# id username
-- Display the user's group memberships (both primary and secondary).
-
-# useradd -G groupname -m -d /home/kids -s /bin/bash username
-
--G groupname: Adds the user to the specified secondary group (groupname).
--m: Creates a home directory for the user if it does not exist.
-In this case, the home directory will be /home/kids as specified by -d.
--d /home/kids: Specifies the home directory for the user.
-Instead of the default /home/username, the user's home directory will be set to /home/kids.
--s /bin/bash: Specifies the user's login shell as /bin/bash.
-
-# cat /etc/group
-- Displays the contents of the /etc/group file, which lists all system groups, their Group ID (GID), 
-and the users that are members of each group (both primary and secondary members).
-
-``````````````````````````````````````````````````````````````````````````````````````````````````````````
-
-Basic Permissions: [ File based ]
-------------------
-
-ls -l
-- List files and directories in long format, displaying permissions, ownership, size, and modification date.
-
-ls -l filename
-- Display detailed information (long format) about a specific file.
-
-ls -ld directoryName
-- Display detailed information (long format) about a specific directory/folder.
-
-ls -R
-- Recursively list all files and directories, including subdirectories and their contents.
-
-1) Symbolic Method
-===================
-read	: r
-write	: w
-execute	: x
-------------
-user owner	: u
-group owner	: g
-Others		: o
-All		: a
-------------
-Assign		: +
-Remove		: -
-Overwrite	: =
-------------
-
-
-Permission Area:
-----------------
---- : user owner
---- : group owner
---- : Others
-
-# ls -l
--rw-r--r-- 1 root root   43 Sep 23 01:56 file1
-
-
-Default permissions for file (644): 
------------------------------
-read & write	: u
-read		: g
-read		: o
-
-Default permissions for dir (755): 
-----------------------------
-read, write & execute	: u
-read & execute		: g
-read & execute		: o
-
-Change permissions in Symbolic method:
----------------------------------------
-# chmod u+rx file/dir
-- Give the user (owner) read and execute permissions on the file/directory.
-
-# chmod u-r,g+rw,o-rwx file/dir
-- Remove read permission from the user, give the group read and write permissions, and remove all permissions for others.
-
-# chmod u=rw file/dir
-- Set the user’s permissions to read and write only, removing any other permissions.
-
-# chmod ugo=r file/dir
-- Set read-only permissions for the user, group, and others.
-
-# chmod a=r file/dir
-- Set read-only permissions for all users (user, group, and others).
-
-# chmod +x file/dir
-- Add execute permission to all users (user, group, and others).
-
-2) Numeric Method
------------------
-
-read	: 4
-write	: 2
-execute	: 1
-Full	: 7
-No	: 0
-
----	000	0
-r--	100	4	
--w-	010	2
---x	001	1
-rwx	111	7
-
-# chmod 711 file/dir
-- Set read, write, and execute permission for the user, and execute permission for group and others.
-
-# chmod 111 dir -R
-- Set execute-only permission for user, group, and others recursively on a directory and its contents.
-
-umask
-- To check the current `umask` value, which controls default file and directory permissions.
-
-umask 0000
-- To change the `umask` value to `0000`. Here, the first `0` represents special permissions.
-
-Default Permission Calculation:
-```````````````````````````````````
-
-Default Permission for Directory: Calculated as 777 - umask.
-- If umask is 0000, the default permission for a directory will be 777 (full read, write, and execute permissions for all).
-Default Permission for File: Calculated as 666 - umask.
-- If umask is 0000, the default permission for a file will be 666 (read and write permissions for all, but no execute permission).
+```bash
+find <where_to_find> -<attribute> <what_to_find>
+```
 
 Example:
-- If umask is 0022:
-  - Directory default permission: 777 - 022 = 755 (rwx for user, rx for group and others).
-  - File default permission: 666 - 022 = 644 (rw for user, r for group and others).
-The umask controls how permissions are masked when new files and directories are created.
 
-`````````````````````````````````````````````````````````````````````````````````````````````````````````
+```bash
+find /folder -name filename
+```
 
-# OWNERSHIP IN LINUX
-````````````````````````
+---
 
-Every file and directory in Linux has an associated owner and group. 
-Ownership determines who can access or modify the file.
+### 1️⃣ By NAME
 
-- To check the current ownership of a file, use the following command:
+```bash
+find . -name natasha
+find . -iname natasha         # Case-insensitive search
+find /home/edbda/ -iname "*.png"   # All .png files (case-insensitive)
+```
+
+---
+
+## 📚 Working with File Content
+
+### 🔃 sort
+
+```bash
+sort filename         # Sort file content
+sort -u filename      # Sort uniquely (remove duplicates)
+```
+
+---
+
+### 📖 more
+
+```bash
+more filename
+```
+
+* Displays content page-by-page; press `Enter` to see more.
+
+---
+
+### 🔢 wc (Word Count)
+
+```bash
+wc filename           # Shows lines, words, bytes, and filename
+wc -l filename        # Line count
+wc -w filename        # Word count
+wc -c filename        # Byte count
+wc -l -w -c filename  # All three together
+```
+
+---
+
+### 🔝 head
+
+```bash
+head -n 5 filename     # First 5 lines
+head -5 filename       # Same as above
+```
+
+---
+
+### 🔚 tail
+
+```bash
+tail -n 5 filename     # Last 5 lines
+tail -5 filename       # Same as above
+```
+
+---
+
+### 2️⃣ By SIZE
+
+**Units:**
+
+* `k` → Kilobytes
+* `M` → Megabytes
+* `G` → Gigabytes
+
+Examples:
+
+```bash
+find /home/edbda -size 2k         # Exactly 2KB
+find /home/edbda -size +2k        # Greater than 2KB
+find /home/edbda -size -2k        # Less than 2KB
+find /home/edbda -size +2M -size -10M   # Between 2MB and 10MB
+```
+
+---
+
+### 3️⃣ By TYPE
+
+```bash
+find /home/edbda -type f                  # Files only
+find /home/edbda -type d                  # Directories only
+find /home/edbda -type f -iname "abc"     # Specific file (case-insensitive)
+```
+
+---
+
+### 4️⃣ By INDEX NUMBER
+
+```bash
+find /home/edbda -inum 45645456456
+```
+
+👉 To find a file’s index (inode) number:
+
+```bash
+ls -i
+```
+
+---
+
+## 🔗 Piping `|`
+
+```bash
+cmd1 | cmd2
+```
+
+➡ Passes output of `cmd1` as input to `cmd2`
+
+Example:
+
+```bash
+cat filename | wc -l
+```
+
+---
+
+## 👤 User Management
+
+### ➕ Add User
+
+```bash
+adduser username
+```
+
+---
+
+### 🧬 User Info
+
+```bash
+id username       # UID + GID
+id -u username    # User ID only
+id -g username    # Group ID only
+```
+
+---
+
+### 🔁 Switch User
+
+```bash
+su - username     # Switch to another user
+exit              # Go back to previous user
+logout            # Also returns to previous user
+```
+
+---
+
+### 🔐 Set/Change Password
+
+```bash
+passwd username
+```
+
+---
+
+
+## 👥 User & Group Management
+
+### 🗑️ Deleting Users & Groups
+
+```bash
+userdel username              # Delete user (keep home dir)
+userdel -r username           # Delete user and remove home dir
+
+gpasswd groupname             # Set password for a group
+
+grep groupname /etc/group     # Search group details
+grep groupname /etc/gshadow   # Search secure group info
+
+groupdel groupname            # Delete a group
+```
+
+---
+
+## 🧑‍💻 Advanced User & Group Management
+
+```bash
+useradd -u 2000 username         # Create user with custom UID
+usermod -u 2001 username         # Change UID of existing user
+
+groupadd -g 9000 groupname       # Create group with custom GID
+groupmod -g 9001 groupname       # Modify GID of group
+
+useradd -c "COMMENT" username    # Add user with description
+usermod -c "NEW COMMENT" username # Modify comment for a user
+
+useradd -m -d /home/homeName username  # Create user with custom home dir
+mkdir /home/homeName
+usermod -d /home/newhomeName username  # Change existing home dir
+
+useradd -s /bin/nologin username       # Create user with non-login shell
+usermod -s /bin/bash username          # Change user shell to bash
+
+# Check user/group info:
+grep username /etc/passwd
+grep groupname /etc/group
+```
+
+---
+
+## 🔍 `grep` – Pattern Searching in Files
+
+### 🔤 Basic Syntax
+
+```bash
+grep "string" filename
+grep "string1\|string2" filename   # OR operator
+```
+
+---
+
+### 🚫 Inverse Match
+
+```bash
+grep -v "string" filename   # Show lines NOT containing "string"
+```
+
+---
+
+### 🔠 Case-Insensitive Match
+
+```bash
+grep -i "s" filename
+```
+
+---
+
+### 💡 Metacharacters
+
+```bash
+^     # Start of line
+$     # End of line
+
+grep -i "^s" filename   # Lines starting with 's'
+grep -i "s$" filename   # Lines ending with 's'
+```
+
+---
+
+### 🎯 Only Match Output
+
+```bash
+grep -o "string" filename   # Print only the matched part
+```
+
+---
+
+### ⬆️⬇️ Lines Before & After Match
+
+```bash
+grep -B 1 "^i" filename      # 1 line Before match
+grep -A 1 "^i" filename      # 1 line After match
+grep -A 1 -B 1 "^i" filename # 1 line Before and After
+```
+
+---
+
+## 📏 Pattern / Regex Matching
+
+### 🔤 Character Classes
+
+```bash
+[a-z]         # lowercase letters
+[A-Z]         # uppercase letters
+[0-9]         # digits
+[a-zA-Z0-9]   # alphanumeric
+```
+
+---
+
+## ✨ Extended `grep` (egrep or grep -E)
+
+```bash
+grep -E "pattern" filename
+egrep "pattern" filename
+```
+
+🔁 **Repetition with `{}`**
+
+```bash
+[a-z]{10}       # Exactly 10 lowercase letters
+[a-z]{10,20}    # Between 10 and 20 lowercase letters
+[a-z]{10,}      # At least 10 lowercase letters
+```
+
+> 📝 You can mix character classes and ranges to match complex patterns effectively.
+
+---
+
+## 📝 VIM Editor – Basics & Commands
+
+### 🖊️ Insert & Command Mode
+
+```bash
+i       # Insert mode (start typing)
+Esc     # Exit insert mode (return to command mode)
+```
+
+---
+
+### 📄 Navigation & Editing
+
+```bash
+G       # Go to end of file
+yy      # Yank (copy) current line
+nyy     # Yank n lines
+p       # Paste below the cursor
+P       # Paste above the cursor
+dd      # Delete (cut) current line
+ndd     # Delete (cut) n lines
+u       # Undo last change
+Ctrl + r # Redo last undone change
+```
+
+---
+
+### 📌 Last Line Mode Commands
+
+```bash
+:set nu         # Show line numbers
+:set nonu       # Hide line numbers
+
+:10             # Go to line 10
+/word           # Search 'word'
+n               # Next match
+N               # Previous match
+
+:%s/old/new/    # Replace first occurrence
+:%s/old/new/g   # Replace all occurrences
+
+:w              # Save file
+:wq             # Save and quit
+:q              # Quit
+:w!             # Force save
+:q!             # Force quit without saving
+:wq!            # Force save and quit
+```
+
+---
+
+## 🔄 System Package Management (`apt`)
+
+### 🔃 Update & Upgrade
+
+```bash
+apt update       # Updates package lists (no install)
+apt upgrade      # Installs all available updates
+```
+
+---
+
+### 📦 Install & Remove Packages
+
+```bash
+apt install package_name        # Install package
+apt autoremove package_name     # Remove package + unused dependencies
+```
+
+---
+
+## 👥 Group Membership in Linux
+
+### 🧾 Types of Membership
+
+| Membership    | Description                                                        |
+| ------------- | ------------------------------------------------------------------ |
+| **Primary**   | Assigned at user creation, controls login group (in `/etc/passwd`) |
+| **Secondary** | Additional groups (in `/etc/group`), do not affect login           |
+
+---
+
+### 1️⃣ Primary Group Example
+
+```bash
+groupadd developers                  # Create a group
+useradd -g developers john           # Create user with primary group
+id john                              # View group memberships
+```
+
+---
+
+### 2️⃣ Secondary Group Example
+
+```bash
+groupadd testers                     # Create a group
+useradd -G testers jane              # Add user to secondary group
+id jane                              # View group memberships
+```
+
+---
+
+### 👤 Advanced User Creation with Group
+
+```bash
+useradd -G groupname -m -d /home/kids -s /bin/bash username
+```
+
+🧩 Explanation:
+
+* `-G groupname`: Secondary group
+* `-m`: Create home directory
+* `-d /home/kids`: Set custom home directory
+* `-s /bin/bash`: Set shell as bash
+
+---
+
+### 📂 Check Group Info
+
+```bash
+cat /etc/group       # Lists all groups and their members
+```
+
+---
+
+## 🔐 **File & Directory Permissions (Basic)**
+
+### 📄 Listing Permissions
+
+```bash
+ls -l                # Long list with permissions, owner, group, etc.
+ls -l filename       # Long list for a specific file
+ls -ld directory     # Long list for a directory itself (not its contents)
+ls -R                # Recursive list of directories and subdirectories
+```
+
+---
+
+## 1️⃣ **Symbolic Method** of Permissions
+
+### 🧩 Permission Types:
+
+| Type    | Symbol |
+| ------- | ------ |
+| Read    | `r`    |
+| Write   | `w`    |
+| Execute | `x`    |
+
+### 👥 User Types:
+
+| Who    | Symbol |
+| ------ | ------ |
+| User   | `u`    |
+| Group  | `g`    |
+| Others | `o`    |
+| All    | `a`    |
+
+### ➕ Modifiers:
+
+| Action      | Symbol |
+| ----------- | ------ |
+| Add         | `+`    |
+| Remove      | `-`    |
+| Set/Replace | `=`    |
+
+---
+
+### 🧪 Example Breakdown
+
+```bash
+-rw-r--r-- 1 root root 43 Sep 23 01:56 file1
+# u: rw   g: r   o: r
+```
+
+📦 **Default Permissions:**
+
+* **Files:** `644` → `rw-r--r--`
+* **Directories:** `755` → `rwxr-xr-x`
+
+---
+
+### 🛠️ Changing Permissions – Symbolic
+
+```bash
+chmod u+rx file         # Give read & execute to user
+chmod u-r,g+rw,o-rwx file
+# Remove read from user, add rw to group, remove all from others
+chmod u=rw file         # Set read & write only for user
+chmod ugo=r file        # Read-only for everyone
+chmod a=r file          # Same as above (a = all)
+chmod +x file           # Add execute to everyone
+```
+
+---
+
+## 2️⃣ **Numeric (Octal) Method**
+
+| Permission | Binary | Octal |
+| ---------- | ------ | ----- |
+| `---`      | 000    | 0     |
+| `--x`      | 001    | 1     |
+| `-w-`      | 010    | 2     |
+| `-wx`      | 011    | 3     |
+| `r--`      | 100    | 4     |
+| `rw-`      | 110    | 6     |
+| `rwx`      | 111    | 7     |
+
+---
+
+### 🔧 chmod with Numbers
+
+```bash
+chmod 711 file         # rwx (user), --x (group), --x (others)
+chmod 111 dir -R       # --x for all, recursively
+```
+
+---
+
+## 🧮 **umask – Default Permissions Control**
+
+### 📌 Commands
+
+```bash
+umask                 # Show current umask
+umask 0000            # Set umask to 0000 (least restrictive)
+```
+
+---
+
+### 🔍 Default Permissions = Base - umask
+
+🗂️ **Directories:**
+`777 - umask`
+📄 **Files:**
+`666 - umask`
+
+#### 🧠 Example (umask = 0022):
+
+| Type      | Calculation | Result              |
+| --------- | ----------- | ------------------- |
+| Directory | `777 - 022` | `755` → rwx r-x r-x |
+| File      | `666 - 022` | `644` → rw- r-- r-- |
+
+> 🔒 Note: Files **don’t get execute** permissions by default (even with umask 0000).
+
+---
+
+# 📁 OWNERSHIP IN LINUX 🔐
+
+In Linux, **every file and directory** has:
+
+* an **Owner (User)** 👤
+* a **Group** 👥
+
+Ownership decides **who can read, write, or execute** a file or directory.
+
+---
+
+## 🔍 Check Ownership of a File
+
+Use `ls -l` to view ownership and permissions:
+
+```bash
 ls -l filename
-- Example:
+```
+
+### ✅ Example:
+
+```bash
 ls -l myfile.txt
-- Output:
+```
+
+**Output:**
+
+```
 -rw-r--r-- 1 john developers 1024 Mar 10 10:30 myfile.txt
-- In this example, 'john' is the owner, and 'developers' is the group.
+```
 
-- To change the user ownership of a file, use the 'chown' command:
+Here:
+
+* `john` → **Owner** 👤
+* `developers` → **Group** 👥
+
+---
+
+## 🔄 Change User Ownership – `chown`
+
+Use `chown` to change the owner of a file:
+
+```bash
 chown username filename
-- Example:
+```
+
+### ✅ Example:
+
+```bash
 chown john myfile.txt
-- This command changes the ownership of 'myfile.txt' to the user 'john'.
-- 'john' will now have permissions over the file according to the file's permission settings.
+```
 
-- To change the group ownership of a file, use the 'chgrp' command:
+Now **john** becomes the owner of `myfile.txt`.
+
+---
+
+## 🧑‍🤝‍🧑 Change Group Ownership – `chgrp`
+
+To change the **group** ownership:
+
+```bash
 chgrp groupname filename
-- Example:
-chgrp developers myfile.txt
-- This command changes the group ownership of 'myfile.txt' to 'developers'.
+```
 
-- You can also change both the user and group ownership of a file in a single command:
+### ✅ Example:
+
+```bash
+chgrp developers myfile.txt
+```
+
+---
+
+## 🔁 Change Both Owner and Group
+
+You can change both at once with:
+
+```bash
 chown username:groupname filename
-- Example:
+```
+
+### ✅ Example:
+
+```bash
 chown john:developers myfile.txt
-- In this case, 'john' becomes the owner and 'developers' is the group.
+```
 
-But what if you want to give ownership to someone in "others"?
-In Linux, "others" refers to users who are neither the owner nor part of the group.
-If a user from the "others" category needs ownership, you can follow these steps:
+Now `john` is the owner, and `developers` is the group.
 
-# Step 1: Change ownership to the user in "others":
+---
+
+## 👥 What if the New Owner is from "Others"?
+
+In Linux:
+
+* **Owner** → The user who created the file
+* **Group** → A group of users
+* **Others** → Everyone else
+
+To give ownership to an "others" user:
+
+---
+
+### 🧭 Step 1: Change User Ownership
+
+```bash
 chown username filename
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 chown jane myfile.txt
-# This removes 'jane' from the "others" category and makes her the owner of 'myfile.txt'.
+```
 
-# Step 2: If needed, add the user to a specific group using the 'usermod' command:
+Now **jane** is the owner, no longer in "others".
+
+---
+
+### 🧭 Step 2: Add User to a Group
+
+```bash
 usermod -G groupname username
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 usermod -G developers jane
-- This command adds 'jane' to the 'developers' group.
+```
 
-# Step 3: Change the group ownership of the file to the appropriate group:
+Now **jane** is part of the `developers` group.
+
+---
+
+### 🧭 Step 3: Change Group Ownership
+
+```bash
 chgrp groupname filename
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 chgrp developers myfile.txt
-- This changes the group ownership of 'myfile.txt' to 'developers', where 'jane' is now a member.
+```
 
-RECURSIVE OWNERSHIP CHANGES
+---
 
-If you want to change the ownership of a directory and ALL its contents (files and subdirectories),
-you need to use the '-R' option to apply the change recursively.
+## 🔁 RECURSIVE Ownership Changes
 
-- To recursively change the user ownership of a directory and its contents:
+Use the `-R` flag to apply changes **recursively** to all files and subdirectories.
+
+---
+
+### 👤 Recursive User Ownership:
+
+```bash
 chown -R username directoryname
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 chown -R john /mydir
-- This command changes the ownership of '/mydir' and all the files and subdirectories within to 'john'.
+```
 
-- To recursively change the group ownership of a directory and its contents:
+---
+
+### 👥 Recursive Group Ownership:
+
+```bash
 chgrp -R groupname directoryname
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 chgrp -R developers /mydir
-- This command changes the group ownership of '/mydir' and all its contents to 'developers'.
+```
 
-- To change both the user and group ownership recursively:
+---
+
+### 🔄 Recursive Owner + Group Change:
+
+```bash
 chown -R username:groupname directoryname
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 chown -R john:developers /mydir
-- This changes both the user and group ownership of '/mydir' and all its contents to 'john' and 'developers'.
+```
 
-OTHER USEFUL OWNERSHIP COMMANDS
+---
 
-Sometimes, you might need to check which files are owned by a specific user or group.
+## 🔎 Find Files by Owner or Group
 
-- To find all files owned by a particular user, you can use the 'find' command:
+Sometimes you want to list files owned by a specific user or group.
+
+---
+
+### 👤 Find Files Owned by a User:
+
+```bash
 find /path/to/search -user username
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 find /home -user john
-- This command finds all files under '/home' that are owned by 'john'.
+```
 
-- Similarly, you can search for files belonging to a specific group:
+---
+
+### 👥 Find Files Belonging to a Group:
+
+```bash
 find /path/to/search -group groupname
-- Example:
+```
+
+#### ✅ Example:
+
+```bash
 find /home -group developers
-- This command finds all files under '/home' that belong to the 'developers' group.
+```
 
-`````````````````````````````````````````````````````````````````````````````````````````````````````````
+---
 
-ACCESS CONTROL LIST (ACL)
+📌 **Tips to Remember**:
 
-To apply ACL, we don't need to change basic permission OR
-any ownership of a file or a folder/directory.
+* `chown` → Change Owner (and optionally group)
+* `chgrp` → Change Group only
+* Use `-R` for recursive changes
+* Use `ls -l` to check ownership anytime
 
-After the basic permission area, if you'll see '+' sign, it represents ACL is applied for file or folder/directory.
+---
 
-setfacl -m u:j1:rw file1.txt: Sets read and write permissions for user "j1" on "file1.txt".
-setfacl -m g:groupname:rw file1.txt: Sets read and write permissions for the group "groupname" on "file1.txt".
-getfacl filename: Displays the Access Control List (ACL) for the specified file "filename".
+# 🛡️ ACCESS CONTROL LIST (ACL)
 
-Process Management:
+ACL (Access Control List) gives **fine-grained permissions** to users **without changing** file ownership or basic permissions (`rwx`).
 
-```````````````````
-Process:
-````````
-- Any running program is a process
-- Multiple instances of the same program are processes.
-- Shell is also a process
+---
 
+### ✅ Key Points:
 
-Process ID (PID)
-````````````````
-- Each linux process is identified by unique id PID 
-- Every process has a Parent Process ID (PPID)
-	+ Except "init"
+* ACL allows assigning **custom permissions** to specific users or groups.
+* If ACL is applied on a file, you will see a **`+` sign** at the end of the permissions when you use `ls -l`.
 
-Create a Process:
-`````````````````
-Terminal#1
-```````````
-# sleep 100
+#### 👀 Example:
 
-Terminal#2
-```````````
-# ps -la		[ Show the processes with PID & PPID ]
+```bash
+ls -l file1.txt
+-rw-r--r--+ 1 user group 1234 May 04 10:00 file1.txt
+```
 
-Managing Processes:
-````````````````````
-- Linux kernel tracks what each process is doing
-- Process is assigned a priority
-- Address space assigned to the process
-- Files is the process allowed to access
-- Is the process a ?:-
-	+ Parent
-	+ Child
-	+ Zombie
+---
 
-=> Sometimes the parent dies first
-``````````````````````````````````
-- If the parent just exits or dies, the child process is left running
-- The child's PPID is no longer valid due to parent is gone.
-- Linux calls these children processes "Zombies"
-- In Linux a zombie is just a process in which the children are adopted by the "init" process
-- The init process will eventually cleanup the zombie childrens
+## ✍️ Set ACL
 
+```bash
+setfacl -m u:username:permissions filename
+```
+
+🔸 Example:
+
+```bash
+setfacl -m u:j1:rw file1.txt
+```
+
+Gives **read and write** permission to user `j1` on `file1.txt`.
+
+---
+
+## 👥 Set Group ACL
+
+```bash
+setfacl -m g:groupname:permissions filename
+```
+
+🔸 Example:
+
+```bash
+setfacl -m g:developers:rw file1.txt
+```
+
+---
+
+## 📖 View ACL
+
+```bash
+getfacl filename
+```
+
+🔸 Example:
+
+```bash
+getfacl file1.txt
+```
+
+---
+
+# ⚙️ PROCESS MANAGEMENT
+
+---
+
+## 🔄 What is a Process?
+
+* A **process** is any **running program**.
+* You can run **multiple instances** of the same program, each being its own process.
+* The **shell** (your terminal session) is also a process.
+
+---
+
+## 🆔 Process ID (PID)
+
+* Every process has a unique **PID (Process ID)**.
+* Each process also has a **PPID (Parent Process ID)**.
+* The **`init`** process (PID 1) is the parent of all orphan processes.
+
+---
+
+## 🚀 Creating a Process
+
+### 🖥️ Terminal 1:
+
+```bash
+sleep 100
+```
+
+### 🖥️ Terminal 2:
+
+```bash
+ps -la
+```
+
+This will show details including PID and PPID.
+
+---
+
+## 📊 Process Info & Roles
+
+The kernel tracks:
+
+* Process **priority**
+* **Address space**
+* Allowed **file access**
+* Process roles:
+
+  * Parent 👨‍👦
+  * Child 👶
+  * Zombie 🧟
+
+---
+
+## 🧟 What is a Zombie Process?
+
+* If a **parent process dies before its child**, the child process becomes a **zombie**.
+* Zombie processes are **not running**, just waiting for the parent to acknowledge their termination.
+* These are eventually "adopted" and cleaned up by `init`.
+
+### 👇 Example Flow:
+
+```
 PPID[kill]
-	\___________PID[kill]
+   └── PID[kill]
 
 PPID[die]
-	\___________PID[zombie]
+   └── PID[zombie]
+```
 
-process manager: 
-````````````````
-ps, top, htop
-``````````````
-# top
+---
 
-press 'q' to exit
+## 🧰 Process Monitoring Tools
 
+### 🔧 Commands:
 
-# sleep 10 &
+* `ps` – Show current processes
+* `top` – Live view of system processes
+* `htop` – Enhanced, interactive version of `top` (if installed)
 
-# ps 		[ PID - Process ID]
-# ps -l 	[ Show the PPID - Parent PID ]
-# ps -e		[ All the processes ]
+### 🚀 Common Usage:
 
-# ps -la
+```bash
+ps                # Show processes of current shell
+ps -l             # Show PPID (Parent Process ID)
+ps -e             # Show all system processes
+ps -la            # Detailed listing
+top               # Live process viewer
+```
 
-Kill:
------
-# kill PID
-OR
-# kill -9 PID
+Press **`q`** to exit from `top`.
 
--9 : Forcefully
+---
 
-# pkill sleep
+## 💀 Killing Processes
 
-# killall sleep
---------------------
+### 🔫 Kill by PID:
 
+```bash
+kill PID
+```
 
-# sleep 10000 &
-# sleep 20000 &
+### 🔫 Force Kill:
 
+```bash
+kill -9 PID
+```
 
+### 🛑 Kill by Name:
 
+```bash
+pkill sleep
+killall sleep
+```
 
-Check backgroup process:
+---
 
-# jobs
+## 🎭 Background Processes
+
+### Run in background:
+
+```bash
+sleep 10000 &
+sleep 20000 &
+```
+
+---
+
+### View background jobs:
+
+```bash
+jobs
+```
+
+#### Output:
+
+```
 [1]-  Running                 sleep 10000 &
 [2]+  Running                 sleep 20000 &
+```
 
--  : Second last added in jobs
-+  : last added in jobs
+* `-` → Second last job
+* `+` → Last added job
 
-# jobs -l	[ with PID ]
-[1]-   971 Running                 sleep 10000 &
-[2]+   972 Running                 sleep 20000 &
+---
 
+### View with PID:
 
-# fg %2
+```bash
+jobs -l
+```
 
-ctrl+z [stop]
+---
 
-# bg %2 [ To start in BG ]
-+++++++++++++++++++++++++++++++++++
+### Bring job to foreground:
 
-Shell Scripting:
-----------------To run multiple objects[binary/commands] using a single object[file].
+```bash
+fg %2
+```
 
-.sh || .bash 
+---
 
+### Stop (pause) foreground job:
+
+Press `Ctrl + Z`
+
+---
+
+### Resume in background:
+
+```bash
+bg %2
+```
+
+---
+
+📌 **Recap**:
+
+* `sleep` creates a process that just waits.
+* `jobs` shows background processes.
+* `fg`, `bg`, `kill`, and `ps` are essential for process control.
+* Zombies aren’t dangerous—but too many = system mess.
+
+---
+
+# 🐚 SHELL SCRIPTING IN LINUX
+
+Shell scripting allows you to execute **multiple commands** by running a **single file** (like an automation shortcut).
+
+---
+
+## 📁 Script Basics
+
+✅ **File extension**: `.sh` or `.bash`
+✅ **Shebang** (`#!`) tells the system which shell to use.
+
+---
+
+### ✍️ Create a Script:
+
+```bash
 # vim runme.sh
+```
 
-#!/bin/bash	 [env declaration]SHEBANG
-cmd1
-cmd2
-cmd3
+#### 📝 Example:
 
-:wq [Save & Quit]
+```bash
+#!/bin/bash        # ← Shebang (env declaration)
+echo "Running multiple commands!"
+date
+whoami
+```
 
-# chmod u+x runme.sh
-# ./runme.sh
-OR
-# bash runme.sh
+### 💾 Save & Quit:
 
+Press `ESC` then type `:wq`
 
+---
 
-==> Debug:
-----------
+## ✅ Make It Executable:
 
-# bash -x runme.sh
+```bash
+chmod u+x runme.sh
+```
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Variable:
----------
+---
+
+## ▶️ Run the Script:
+
+```bash
+./runme.sh
+# OR
+bash runme.sh
+```
+
+---
+
+## 🐞 Debugging a Script:
+
+```bash
+bash -x runme.sh
+```
+
+This shows **each command** as it's being executed.
+
+---
+
+# 🧮 VARIABLES
+
+Variables store data like text or numbers.
+
+---
+
+### ✨ Simple Example:
+
+```bash
 #!/bin/bash
 target="example.com"
-echo "My target for today is: $target"
-echo "My target for today is: ${target}"
+echo "Target: $target"
+echo "Target: ${target}"
+```
 
-----------
+---
+
+### 📥 Read from User:
+
+```bash
 #!/bin/bash
 read -p "Enter the target: " target
-echo "My target for today is: ${target}"
-echo "My target for today is: ${target:-DEFAULT}"
------------
+echo "Target: ${target}"
+echo "Target or default: ${target:-DEFAULT}"
+```
 
+---
 
-#!/bin/bash
-target=$(whoami)
-echo "My user for today is: $target"
------------
-#!/bin/bash
-target=`whoami`
-echo "My user for today is: $target"
------------
+### 🔁 Assign via Command:
 
+```bash
+target=$(whoami)        # Recommended
+# OR
+target=`whoami`         # Older syntax
+echo "Current user: $target"
+```
 
-Arithmetic
-~~~~~~~~~~~
+---
+
+# ➗ ARITHMETIC
+
+### 🧮 Fixed Values:
+
+```bash
 x=10
 y=2
 echo $(($x + $y))
---------
+```
+
+---
+
+### 🧮 User Input:
+
+```bash
 read -p "Enter first: " x
 read -p "Enter second: " y
-echo $(($x + $y))
-	--------
-#!/bin/bash
+echo "Sum: $(($x + $y))"
+```
+
+---
+
+### 🧮 Using `expr`:
+
+```bash
 expr 2 + 2
 expr 2 - 2
 expr 2 / 2
 expr 2 \* 2
+```
 
-To run expr and echo together:
+> Note: Escape `*` with `\`
 
-echo "The addition is: " $(expr $a + $b)
-===============================
-Conditions:
-```````````
-1) if...then...fi
-2) if...then...else...fi
-3) if...then...elif...then...fi
-4) if...then...elif...then...else...fi
+✅ Combine with echo:
 
+```bash
+echo "Addition: $(expr $a + $b)"
+```
 
-1) if...then...fi
-````````````````````
+---
+
+# ⚖️ CONDITIONAL STATEMENTS
+
+Used to perform decisions based on conditions.
+
+---
+
+## 📌 Syntax Forms:
+
+1. `if...then...fi`
+2. `if...then...else...fi`
+3. `if...then...elif...fi`
+4. `if...then...elif...else...fi`
+
+---
+
+### 1️⃣ if...then...fi
+
+```bash
 #!/bin/bash
-read -p "Enter: " a
+read -p "Enter a number: " a
 
-if [[ $a == "0" ]];then
-	echo "Ch mayla"
+if [[ $a == "0" ]]; then
+    echo "You entered zero."
 fi
+```
 
+---
 
+### 2️⃣ if...then...else...fi
 
-2) if...then...else...fi
-`````````````````````````
+```bash
 #!/bin/bash
-read -p "Enter: " a
+read -p "Enter a number: " a
 
-if [[ $a == "0" ]];then
-	echo "Ch mayla"
+if [[ $a == "0" ]]; then
+    echo "Zero is neutral"
 else
-	echo "Tumse na ho payega"
+    echo "Not zero!"
 fi
+```
 
+---
 
-3) if...then...elif...then...fi
-`````````````````````````````````
+### 3️⃣ if...then...elif...fi
+
+```bash
 #!/bin/bash
-read -p "Enter: " a
+read -p "Enter a number: " a
 
-if [[ $a == "0" ]];then
-	echo "WoW"
-elif [[ $a == "1" ]];then
-	echo "Kidding"
+if [[ $a == "0" ]]; then
+    echo "Zero"
+elif [[ $a == "1" ]]; then
+    echo "One"
 fi
+```
 
-4) if...then...elif...then...else...fi
-```````````````````````````````````````
+---
+
+### 4️⃣ if...then...elif...else...fi
+
+```bash
 #!/bin/bash
-read -p "Enter: " a
+read -p "Enter a number: " a
 
-if [[ $a == "0" ]];then
-	echo "WoW"
-elif [[ $a == "1" ]];then
-	echo "Kidding"
-else 
-	echo "Don't take it lightly"
-fi
-
-1) Relational Operator:
-```````````````````````
-String comparisons: ==, !=, <, <=, >, >=, =~, !~
-Numeric Comparisons: -eq, -ne, -lt, -le, -gt, -ge
-
-[[ NUM == NUM ]]	Equal
-[[ NUM != NUM ]]	Not Equal
-[[ STRING -eq STRING ]]		Equal
-[[ STRING -ne STRING ]]		Not equal
-[[ STRING -lt STRING ]]		Less than
-[[ STRING -le STRING ]]		Less than or equal
-[[ STRING -gt STRING ]]		Greater than
-[[ STRING -ge STRING ]]		Greater than or equal
-[[ STRING =~ STRING ]]	Match RegEx
-[[ STRING !~ STRING ]]	Not-Match RegEx
-
-File Ops:
-``````````
-[[ -e FILE ]]	Exists
-[[ -r FILE ]]	Readable
-[[ -w FILE ]]	Writable
-[[ -x FILE ]]	Executable
-[[ -f FILE ]]	File
-[[ -d FILE ]]	Directory
-[[ -z STRING ]]	Empty string/var
-[[ -n STRING ]]	Not empty string/var
-[[ -s FILE ]] : File size not empty
-[[ ! -s FILE ]] : File size empty
-
-2) Logical Operators:
-``````````````````````
-||, &&, !
-
-[[ $a == "0" ]] && [[ $b == "1" ]]
-
-[[ $a == "0" ]] || [[ $b == "1" ]]
-
-[[ ! -z $VAR ]] : Not Empty
-
------------
-
-1) if...then...fi
-2) if...then...else...fi
-3) if...then...elif...then...fi
-
-#!/bin/bash
-read -p "Enter value: " a
-if [ $a == "1" ]
-then
-echo "It done"
-fi
-
-2) if...then...else...fi
-
-#!/bin/bash
-read -p "Enter value: " a
-if [ $a == "1" ]
-then
-echo "It done"
+if [[ $a == "0" ]]; then
+    echo "Zero"
+elif [[ $a == "1" ]]; then
+    echo "One"
 else
-echo "WTF"
+    echo "Neither zero nor one"
 fi
+```
 
-3) if...then...elif...then...fi
+---
 
-#!/bin/bash
-read -p "Enter value: " a
-if [ $a == "1" ]
-then
-echo "It done"
-elif [ $a == "2" ]
-then 
-echo "Its FUN"
+### 💡 Bonus Tips:
+
+* Use `[[ ]]` for test conditions.
+* Variables should be **quoted** if user input is expected (to avoid issues with spaces or empty strings).
+* Always test your scripts using `bash -x script.sh`.
+
+---
+
+# 🔁 SHELL SCRIPTING – OPERATORS, LOOPS, REDIRECTION
+
+---
+
+## 1️⃣ RELATIONAL OPERATORS
+
+Used for **comparing values**, either strings or numbers.
+
+### 🔡 String Comparisons:
+
+```bash
+[[ str1 == str2 ]]     # Equal
+[[ str1 != str2 ]]     # Not Equal
+[[ str1 < str2 ]]      # Less than (ASCII)
+[[ str1 > str2 ]]      # Greater than (ASCII)
+[[ str1 =~ regex ]]    # Matches regex
+[[ str1 !~ regex ]]    # Doesn't match regex
+```
+
+### 🔢 Numeric Comparisons:
+
+```bash
+[[ $a -eq $b ]]    # Equal
+[[ $a -ne $b ]]    # Not Equal
+[[ $a -lt $b ]]    # Less than
+[[ $a -le $b ]]    # Less than or equal
+[[ $a -gt $b ]]    # Greater than
+[[ $a -ge $b ]]    # Greater than or equal
+```
+
+---
+
+## 📄 FILE OPERATIONS
+
+Check file/directory properties.
+
+```bash
+[[ -e file ]]    # Exists
+[[ -r file ]]    # Readable
+[[ -w file ]]    # Writable
+[[ -x file ]]    # Executable
+[[ -f file ]]    # Is a file
+[[ -d dir  ]]    # Is a directory
+[[ -z var  ]]    # Empty string
+[[ -n var  ]]    # Non-empty string
+[[ -s file ]]    # File size > 0
+[[ ! -s file ]]  # File is empty
+```
+
+---
+
+## 2️⃣ LOGICAL OPERATORS
+
+Combine multiple conditions.
+
+```bash
+[[ $a == "1" ]] && [[ $b == "2" ]]   # AND
+[[ $a == "1" ]] || [[ $b == "2" ]]   # OR
+[[ ! -z $var ]]                      # NOT empty
+```
+
+---
+
+# 🧠 CONDITIONALS RECAP
+
+---
+
+### 1) `if...then...fi`
+
+```bash
+if [ $a == "1" ]; then
+  echo "It done"
 fi
+```
 
-4) if...then...elif...then...else...fi
+---
 
-#!/bin/bash
-read -p "Enter value: " a
-if [ $a == "1" ]
-then
-echo "It done"
-elif [ $a == "2" ]
-then
-echo "Its FUN"
+### 2) `if...then...else...fi`
+
+```bash
+if [ $a == "1" ]; then
+  echo "It done"
 else
-echo "WTF"
+  echo "WTF"
 fi
+```
 
-while loop:
------------
+---
 
+### 3) `if...elif...fi`
+
+```bash
+if [ $a == "1" ]; then
+  echo "It done"
+elif [ $a == "2" ]; then
+  echo "Its FUN"
+fi
+```
+
+---
+
+### 4) `if...elif...else...fi`
+
+```bash
+if [ $a == "1" ]; then
+  echo "It done"
+elif [ $a == "2" ]; then
+  echo "Its FUN"
+else
+  echo "WTF"
+fi
+```
+
+---
+
+# 🔁 WHILE LOOP
+
+Repeats code **as long as the condition is true**.
+
+```bash
 while true
 do
-echo "LOL"
+  echo "LOL"
 done
+```
 
-# while true;do echo "LOL";done
+💡 One-liner:
 
-redirect/stdin 
---------
-# cat > file
+```bash
+while true; do echo "LOL"; done
+```
+
+---
+
+# 📥 INPUT REDIRECTION
+
+Used to read input from a file.
+
+```bash
+# Create a file
+cat > file
 Dheeraj
 Tabish
 Amruta
 Mayur
+```
 
-# while read -r name; do echo "Name: $name";done < file
+### Read using `while`:
 
-# cat file | while read -r name; do echo "Name: $name";done
-----------------------------
+```bash
+while read -r name; do
+  echo "Name: $name"
+done < file
+```
 
-TOOL:
------
+✅ OR using pipe:
 
-example.com		DOMAIN
-admin.example.com	SUB DOMAIN
+```bash
+cat file | while read -r name; do
+  echo "Name: $name"
+done
+```
 
-DNS
+---
 
-name - IP
-IP - name
-------
+# 🧰 TOOL – DNS BASICS
 
+| Type          | Example             |
+| ------------- | ------------------- |
+| 🌐 Domain     | `example.com`       |
+| 🧷 Sub-domain | `admin.example.com` |
 
-Target : yahoo.com
+**DNS (Domain Name System)**
+🧭 Converts **names ⇄ IP addresses**
 
+* `Name → IP`: e.g., `google.com` → `142.250.190.14`
+* `IP → Name`: Reverse DNS (PTR record)
 
-# vim subtool.sh
+---
+
+# 📝 SHELL SCRIPTS: TARGETING, FUNCTIONS, AND CASE
+
+---
+
+## 🎯 **Targeting with a Shell Script**
+
+Script that checks subdomains for a given target domain. The script uses **`host`** command to resolve subdomains:
+
+```bash
 #!/bin/bash
-target=$1
-file=$2
+target=$1       # Target domain passed as an argument
+file=$2         # File containing subdomains
+
+# Loop through each subdomain in the file
 while read -r sub; do
-        if host "$sub.$target" &> /dev/null; then
-                echo "$sub.$target"
-        fi
+    if host "$sub.$target" &> /dev/null; then  # Check if the subdomain resolves
+        echo "$sub.$target"
+    fi
 done < $file
+```
 
-nested if:
-----------
+---
 
+## 🔄 **Nested if Conditionals**
+
+Handling file read/write permissions in a nested structure.
+
+```bash
 #!/bin/bash
-file=$1
+file=$1   # File passed as an argument
 
+# Check if file exists
 if [ -f "$file" ]; then
-	if [ -w "$file" ]; then
-		echo "Enter text:"
-		cat >> $file
-	else
-		echo "Not writable"
-	fi
+    # Check if file is writable
+    if [ -w "$file" ]; then
+        echo "Enter text:"
+        cat >> $file   # Append text to the file
+    else
+        echo "Not writable"
+    fi
 else
-	echo "$file not found"
+    echo "$file not found"
 fi
+```
 
-Functions:
-----------
+---
 
+## 🛠️ **Functions in Shell Script**
 
+Creating reusable code blocks (functions) for common tasks.
+
+```bash
 #!/bin/bash
-target=$1
-file=$2
+target=$1   # Target domain
+file=$2     # File containing subdomains
 
+# Define function to brute-force subdomains
 brute(){
-	while read -r sub; do
-        if host "$sub.$target" &> /dev/null; then
-                echo "$sub.$target"
+    while read -r sub; do
+        if host "$sub.$target" &> /dev/null; then  # Resolve subdomain
+            echo "$sub.$target"
         fi
-	done < $file
+    done < $file
 }
 
+# Check if file exists and run brute-force function
 if [ -f "$file" ]; then
-	brute
+    brute
 else
-	echo "$file not found"
+    echo "$file not found"
 fi
-----------------------------------------------------------
+```
 
-CASE in BASH
-------------
+---
 
+## 🗂️ **Case Statements in Bash**
+
+Using a **`case`** structure to handle multiple conditions in a clean way.
+
+```bash
 #!/bin/bash
+
+# Function 1
 f1(){
-        echo "F1 is cool"
+    echo "F1 is cool"
 }
+
+# Function 2
 f2(){
-        echo "F2 is awesome"
+    echo "F2 is awesome"
 }
+
+# Menu for user input
 menu(){
-        echo -e "1. Func 1\n2. Fun 2\n3. exit"
-        read -p "Input> " a
+    echo -e "1. Func 1\n2. Func 2\n3. Exit"
+    read -p "Input> " a
 }
-menu
+
+menu   # Show menu
+
+# Case statement for menu selection
 case $a in
-        "1")
-                f1
-                ;;
-        "2")
-                f2
-                ;;
-        "3")
-                exit
-                ;;
-        *)
-                echo "Very Good Day"
-                ;;
+    "1") 
+        f1  # Call function f1
+        ;;
+    "2")
+        f2  # Call function f2
+        ;;
+    "3")
+        exit  # Exit the script
+        ;;
+    *)
+        echo "Very Good Day"  # Default case
+        ;;
 esac
-```````````````````````````````````````````````````````````````````````````````````
+```
 
-IO STREAMS
--------------
+---
 
-We have three types of streams:
-- stdin(file descriptor 0)
-- stdout(file descriptor 1)
-- stderr(file descriptor 2)
+# 📥 IO STREAMS IN LINUX
 
-stdin
--------
+In Linux, **IO streams** allow programs to read and write data. There are **three types** of streams:
 
+* **stdin** (file descriptor 0): Input stream.
+* **stdout** (file descriptor 1): Output stream.
+* **stderr** (file descriptor 2): Error stream.
+
+### 📝 **stdin: Standard Input**
+
+You can redirect input into a command, for example, by setting values from a file.
+
+```bash
+# Write to file
 cat > file
 redhat
 redhat
 
+# Read input from file using stdin
 passwd nix < file
-password set successfully
+# Output: password set successfully
+```
 
--------------------------------
+---
 
-stdout
--------
+# 📤 **Standard Output (stdout)**
 
+### 🌟 **Redirecting Output to a File**
+
+You can redirect the standard output (stdout) to a file using the **`>`** operator.
+
+```bash
+# Redirect output of echo to a file
 echo "LOL" > file
+
+# Display the contents of the file
 cat file
+# Output: LOL
+```
 
-Standard Output Redirection (stdout):
+---
+
+### 🚮 **Redirecting Output to /dev/null**
+
+**`/dev/null`** is a special device file that discards anything sent to it (like a "black hole" for data). Useful for ignoring unnecessary output.
+
+```bash
+# Send the output to /dev/null, discarding it
 echo "LOL" > /dev/null
+```
 
-- This command sends the output "LOL" to /dev/null, which effectively discards the output. /dev/null is a special device that discards everything written to it.
+This command will execute, but it will not display anything because the output is discarded.
 
-----------------------------------
+---
 
-stderr
--------
+# ⚠️ **Standard Error (stderr)**
 
+### 🔴 **Redirecting Error to /dev/null**
+
+To suppress error messages, redirect **stderr** to **/dev/null** using **`2>`**.
+
+```bash
+# A non-existent command that will generate an error
 ppwwdd 2> /dev/null
-- Here, ppwwdd is a non-existent command. The 2> redirects the error (standard error stream stderr) caused by this command to /dev/null, which suppresses the error message.
+```
 
+* Here, the **`2>`** operator redirects the standard error to **`/dev/null`**, preventing the error message from appearing on the screen.
+
+---
+
+### 🏷️ **Redirecting Only the Errors**
+
+Using **`2>`** allows you to redirect only error output (stderr) while leaving standard output intact.
+
+```bash
+# Redirect errors to /dev/null
 pwd 2> /dev/null
-- The pwd command outputs the current working directory, but the 2> redirects any errors to /dev/null. Since pwd typically doesn’t generate errors, the command will still display the output unless an error occurs.
+```
 
+The **`pwd`** command outputs the current directory, but if any error occurs (e.g., permissions issue), it will be discarded.
 
-To redirect output and error both:
+---
 
+### 🔀 **Redirecting Both Output and Error**
+
+To redirect **both output (stdout) and errors (stderr)** to the same location, use **`&>`**.
+
+```bash
+# Redirect both output and errors to /dev/null
 pwd &> /dev/null
-- This redirects both the output of the pwd command and any errors to /dev/null.
+```
 
+In this case, both the output and any potential error (if **`pwd`** encounters one) will be discarded.
+
+---
+
+### 🔥 **Silencing All Output (Including Errors)**
+
+If you want to completely silence both the output and errors from a command, simply redirect both:
+
+```bash
+# Redirect both output and error for a non-existent command
 ppwwdd &> /dev/null
-- Since ppwwdd is not a valid command, both the error and any potential output (if the command existed) would be redirected to /dev/null, effectively silencing both.
+```
 
-````````````````````````````````````````````````````````````````````````````
+This ensures that both the standard output and the error messages are discarded, making the command execute silently.
+
+---
